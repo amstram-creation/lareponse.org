@@ -3,7 +3,7 @@
 ## Structure
 
 1. **Homepage**
-   - Brief overview of the company
+   - Brief [overview](home.md) of the company
    - Key services offered
    - Call to action (CTA)
 
