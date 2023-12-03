@@ -16,6 +16,7 @@
    - List of services offered
    - Description of each service
    - How it addresses client needs
+   - [Services.md](services.md)
 
 4. **Portfolio**
    - Past projects
