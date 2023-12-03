@@ -3,7 +3,7 @@
 ## Structure
 
 1. **Homepage**
-   - Brief [overview](home.md) of the company
+   - Brief overview of the company
    - Key services offered
    - Call to action (CTA)
 
@@ -16,7 +16,6 @@
    - List of services offered
    - Description of each service
    - How it addresses client needs
-   - [Services.md](services.md)
 
 4. **Portfolio**
    - Past projects
@@ -37,13 +36,13 @@
 ## Content
 
 1. **Homepage**
-   - Create engaging headers and concise text to encourage user interaction.
+   - [Homepage](home.md)
   
 2. **About Us**
    - [About Us](aboutus.md)
 
 3. **Services**
-   - Explain the services in a way that is easily understandable to a layperson, yet detailed enough to inform a tech-savvy visitor.
+   - [Services](services.md)
 
 4. **Projects**
    - Showcase existing projects, with client testimonials if available.
@@ -52,5 +51,7 @@
    - Publish quality articles that reinforce our expertise and ethical stance.
 
 6. **Contact**
-   - Keep it simple. An inquiry form, email address, and phone number.
-
+   - Keep it simple.
+      - point of contact (any, multi),
+      - message
+      - funny custom captcha
