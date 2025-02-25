@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>La Réponse</title>
+    <link rel="stylesheet" href="lareponse.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="La Réponse offers tailored solutions in a digital world often reduced to one-size-fits-all answers. We integrate seamlessly into your existing systems, balancing the comfort of established habits with transformative change, all while respecting the human complexity behind each project. Choose La Réponse as your catalyst for meaningful, ethical innovation.">
+    <meta name="author" content="Sammy Dieleman">
+    <meta property="og:title" content="La Réponse">
+    <meta property="og:description"
+        content="La Réponse offers tailored solutions in a digital world often reduced to one-size-fits-all answers. We integrate seamlessly into your existing systems, balancing the comfort of established habits with transformative change, all while respecting the human complexity behind each project. Choose La Réponse as your catalyst for meaningful, ethical innovation.">
+    <meta property="og:image"
+        content="https://avatars.githubusercontent.com/u/20891495?s=400&u=5c8ce41de45942bbb00f83fdfaa8f48f0227db59&v=4">
+    <meta property="og:url" content="https://lareponse.be">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+
+    <div class="container">
+        <main class="cell" id="golden-1">
+            <h1>Title</h1>
+            <p>Content</p>
+        </main>
+
+        <form action="#" method="post">
+            <label for="content">Speak easy:</label>
+            <textarea id="content" name="content" rows="5" required></textarea>
+
+            <label for="contactInfo">Contact Information (Tel, Email, or Twitter):</label>
+            <input type="text" id="contactInfo" name="contactInfo" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <h1>La Réponse</h1>
+
+        <address>
+            <span>Verboeckhaven 64</span>
+            <span class="spaced">1210 Saint-Josse-ten-Noode</span>
+            <span>+32 (0) 476 687 543</span>
+            <span class="spaced">question@lareponse.be</span>
+            <span>BE 0678.421.364</span>
+        </address>
+        <div class="cell" id="golden-5">
+            <img
+                src="https://avatars.githubusercontent.com/u/20891495?s=400&u=5c8ce41de45942bbb00f83fdfaa8f48f0227db59&v=4" />
+        </div>
+    </div>
+
+    <script>
+
+        function isPortrait() {
+            return window.innerWidth < window.innerHeight;
+        }
+        function switchToPortrait() {
+            document.body.classList.remove('landscape');
+            document.body.classList.add('portrait');
+        }
+        function switchToLandscape() {
+            document.body.classList.remove('portrait');
+            document.body.classList.add('landscape');
+        }
+
+        document.addEventListener('DOMContentLoaded', (e) => {
+            if(isPortrait()) {
+                switchToPortrait();
+            } else {
+                switchToLandscape();
+            }
+        });
+
+        window.addEventListener('resize', (e) => {
+            if(isPortrait()) {
+                switchToPortrait();
+            } else {
+                switchToLandscape();
+            }
+        });
+        
+    </script>
+</body>
+
+</html>
