@@ -1,53 +1,102 @@
 * {
-  margin: 0;
-  padding: 0
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.section {
-  position: absolute;
-  border: 1px solid black
+body {
+    height: 100vh;
+    background: black;
+    display: flex;
 }
 
-#section4 {
-  background-image: url('https://avatars.githubusercontent.com/u/20891495?s=400&u=5c8ce41de45942bbb00f83fdfaa8f48f0227db59&v=4');
-  background-position: center center;
-  background-repeat: no-repeat;
+body.landscape {
+    flex-direction: column;
+    justify-content: center;
+}
+body.portrait {
+    flex-direction: row;
+    justify-content: center;
 }
 
-#section5 {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  /* or any specific height */
+.container {
+    background: white;
 }
 
-#section1 {
-  left: 0px;
-  top: 0px;
+.container>* {
+    width: 100%;
+    height: 100%;
+
+    padding: 0.7rem;
 }
+
+.container {
+    width: 100%;
+    height: calc(100%/1.618);
+
+    display: grid;
+    grid-template-columns: calc(100%/1.618) 1fr 1.618fr;
+    grid-template-rows: calc(100%/1.618) 1fr 1.618fr;
+}
+
+.container>*:nth-child(1) {
+    grid-row: span 3;
+    border-right: 1px solid gray;
+}
+
+.container>*:nth-child(2) {
+    grid-column: span 2;
+    border-bottom: 1px solid gray;
+
+}
+
+.container>*:nth-child(4) {
+    grid-row: span 2;
+    border-left: 1px solid gray;
+}
+
+.container>*:nth-child(5) {
+    grid-row: span 2;
+    border-top: 1px solid gray;
+}
+
+
+
+.portrait .container {
+    transform:rotate(270deg);
+}
+
 
 img {
-  max-width: 100%;
-  height: 100%;
-}
-
-#section3 {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  /* or any specific height */
+    width: 7rem;
+    aspect-ratio: 1/1;
 }
 
 address {
-  font-style: normal;
-  margin: 0 auto;
+    font-style: normal;
+    margin: 0 auto;
 }
 
 address span {
-  display: block;
-  line-height: 1.5em;
+    display: block;
+    line-height: 1.5em;
 }
 
 address span.spaced {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+form {
+    padding: 1em;
+}
+
+form label,
+form textarea,
+form input {
+    display: block;
+    width: 100%;
+}
+
+form textarea {
+    width: 100%;
 }
