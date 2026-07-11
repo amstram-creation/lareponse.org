@@ -3,50 +3,374 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="La Réponse construit des solutions numériques sobres et sur mesure pour les systèmes, les habitudes et les personnes déjà en place.">
+
+  <meta
+    name="description"
+    content="La Réponse construit des solutions numériques sobres et sur mesure pour les systèmes, les habitudes et les personnes déjà en place."
+  >
   <meta name="author" content="La Réponse">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#f4f1e8">
+  <meta name="theme-color" content="#f9f9f9">
   <meta name="color-scheme" content="light">
   <meta name="format-detection" content="telephone=no">
-  <link rel="canonical" href="https://lareponse.be/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="fr_BE">
-  <meta property="og:site_name" content="La Réponse">
-  <meta property="og:title" content="La Réponse | Solutions numériques sur mesure">
-  <meta property="og:description" content="Des outils sobres, lisibles et construits à partir de votre requête.">
-  <meta property="og:url" content="https://lareponse.be/">
-  <meta property="og:image" content="https://lareponse.be/assets/og-image.png">
-  <meta property="og:image:secure_url" content="https://lareponse.be/assets/og-image.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="La Réponse - Parce que.">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="La Réponse | Solutions numériques sur mesure">
-  <meta name="twitter:description" content="Des outils sobres, lisibles et construits à partir de votre requête.">
-  <meta name="twitter:image" content="https://lareponse.be/assets/og-image.png">
-  <meta name="twitter:image:alt" content="La Réponse - Parce que.">
 
   <title>La Réponse | Solutions numériques sur mesure</title>
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/assets/site.css">
-  <link rel="stylesheet" href="/assets/home.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800;900&display=swap"
+    rel="stylesheet"
+  >
 
+  <style>
+    :root {
+      --paper: #f9f9f9;
+      --ink: #000000;
+      --white: #ffffff;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+    }
+
+    html {
+      background: var(--paper);
+    }
+
+    body {
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      font-synthesis: none;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--ink);
+      color: var(--white);
+      transform: translateY(-200%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /*
+      Reference viewport: 1536 × 1024.
+      Horizontal measurements use vw.
+      Vertical measurements use vh.
+    */
+
+    .page {
+      position: relative;
+      isolation: isolate;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    @supports (height: 100svh) {
+      .page {
+        height: 100svh;
+      }
+    }
+
+    /* Header */
+
+    .site-header {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      right: 0;
+      left: 5.208333vw;
+      height: 12vh;
+      display: flex;
+      align-items: flex-start;
+      padding-right: 3.255208vw;
+      padding-left: 2.408854vw;
+    }
+
+    .brand {
+      display: inline-block;
+      margin-top: 3.613281vh;
+      font-family: "Anton", Impact, Haettenschweiler, sans-serif;
+      font-size: min(2.994792vw, 4.492188vh);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-nav {
+      margin-top: 5.078125vh;
+      margin-left: auto;
+    }
+
+    .site-nav ul {
+      display: flex;
+      align-items: center;
+      gap: min(2.734375vw, 4.101563vh);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .site-nav a {
+      display: block;
+      font-size: min(0.976563vw, 1.464844vh);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.035em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      text-decoration: underline;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.3em;
+    }
+
+    .header-dot {
+      flex: none;
+      width: min(1.302083vw, 1.953125vh);
+      height: min(1.302083vw, 1.953125vh);
+      margin-top: 5.078125vh;
+      margin-left: min(4.166667vw, 6.25vh);
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    /* Left rail */
+
+    .rail {
+      position: absolute;
+      z-index: 20;
+      inset: 0 auto 0 0;
+      width: 5.208333vw;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .rail-copy {
+      position: absolute;
+      top: 82.03125vh;
+      left: 1.822917vw;
+      display: flex;
+      flex-direction: column;
+      gap: min(0.390625vw, 0.585938vh);
+      margin: 0;
+      color: var(--white);
+      font-size: min(0.813802vw, 1.220703vh);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.055em;
+      white-space: nowrap;
+      transform: rotate(-90deg);
+      transform-origin: left top;
+    }
+
+    .rail-dot {
+      position: absolute;
+      top: 83.447266vh;
+      left: 2.246094vw;
+      width: min(0.976563vw, 1.464844vh);
+      height: min(0.976563vw, 1.464844vh);
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    /* Hero */
+
+    .main-content,
+    .hero {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-title {
+      position: absolute;
+      z-index: 1;
+      top: 13.671875vh;
+      left: 9.635417vw;
+      margin: 0;
+      font-family: "Anton", Impact, Haettenschweiler, sans-serif;
+      font-size: min(37.434896vw, 56.152344vh);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.018em;
+      white-space: nowrap;
+      transform: scaleX(0.625);
+      transform-origin: left top;
+    }
+
+    .answer {
+      position: absolute;
+      z-index: 2;
+      top: 64.257813vh;
+      left: 9.635417vw;
+      margin: 0;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .answer-text {
+      position: relative;
+      z-index: 1;
+      display: block;
+      font-family: "Anton", Impact, Haettenschweiler, sans-serif;
+      font-size: min(14.648438vw, 21.972656vh);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.015em;
+      transform: scaleX(0.68);
+      transform-origin: left top;
+    }
+
+    .answer-strike {
+      position: absolute;
+      z-index: 3;
+      top: 10.839844vh;
+      left: -1.953125vw;
+      width: 45.703125vw;
+      height: 4.296875vh;
+      background: var(--ink);
+      clip-path: polygon(
+        0% 52%,
+        1% 27%,
+        3% 36%,
+        8% 22%,
+        17% 30%,
+        29% 20%,
+        41% 28%,
+        56% 16%,
+        70% 22%,
+        86% 9%,
+        96% 17%,
+        99% 30%,
+        97% 39%,
+        100% 48%,
+        98% 58%,
+        100% 67%,
+        96% 73%,
+        87% 66%,
+        74% 75%,
+        58% 70%,
+        42% 84%,
+        28% 76%,
+        13% 86%,
+        4% 76%,
+        1% 89%
+      );
+      transform: rotate(-0.55deg);
+      transform-origin: left center;
+    }
+
+    .answer::before {
+      content: "";
+      position: absolute;
+      z-index: 4;
+      top: 12.45vh;
+      left: -2.05vw;
+      width: 45.9vw;
+      height: 0.55vh;
+      background: var(--ink);
+      transform: rotate(-0.35deg);
+      transform-origin: left center;
+    }
+
+    /* Footer */
+
+    .page-footer {
+      position: absolute;
+      z-index: 10;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .footer-index {
+      position: absolute;
+      top: 92.578125vh;
+      left: 7.617188vw;
+      margin: 0;
+      font-size: min(1.627604vw, 2.441406vh);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.015em;
+      white-space: nowrap;
+    }
+
+    .footer-cue {
+      position: absolute;
+      top: 91.40625vh;
+      left: 52.34375vw;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: min(2.604167vw, 3.90625vh);
+      font-weight: 300;
+      line-height: 1;
+      transform: translateX(-50%);
+    }
+
+    .footer-copy {
+      position: absolute;
+      top: 92.1875vh;
+      left: 73.046875vw;
+      margin: 0;
+      font-size: min(0.878906vw, 1.318359vh);
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: 0.025em;
+      white-space: nowrap;
+    }
+
+    .footer-plus {
+      position: absolute;
+      top: 92.578125vh;
+      right: 3.125vw;
+      font-size: min(1.106771vw, 1.660156vh);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
 <body id="accueil">
-  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+  <a class="skip-link" href="#contenu">
+    Aller au contenu principal
+  </a>
 
   <div class="page">
     <header class="site-header">
-      <a class="brand" href="/" aria-label="La Réponse — accueil">LA RÉPONSE</a>
+      <a class="brand" href="/" aria-label="La Réponse — accueil">
+        LA RÉPONSE
+      </a>
 
       <nav class="site-nav" aria-label="Navigation principale">
         <ul>
@@ -62,21 +386,26 @@
     </header>
 
     <aside class="rail" aria-label="Manifeste latéral">
-      <div class="rail__stack">
-        <span class="rail__dot" aria-hidden="true"></span>
-        <p>
-          NOUS N'AVONS PAS<br>
-          DES RÉPONSES TOUTES FAITES.
-        </p>
-      </div>
+      <p class="rail-copy">
+        <span>NOUS N'AVONS PAS</span>
+        <span>DES RÉPONSES TOUTES FAITES.</span>
+      </p>
+
+      <span class="rail-dot" aria-hidden="true"></span>
     </aside>
 
     <main id="contenu" class="main-content" tabindex="-1">
       <section class="hero" aria-labelledby="titre-hero">
-        <h1 id="titre-hero">Pourquoi?</h1>
+        <h1 id="titre-hero" class="hero-title">
+          Pourquoi?
+        </h1>
 
-        <p class="answer">
-          <span class="answer__struck">Parce que</span><span class="answer__dot">.</span>
+        <p class="answer" aria-label="Parce que.">
+          <span class="answer-text">
+            <span>Parce que</span><span>.</span>
+          </span>
+
+          <span class="answer-strike" aria-hidden="true"></span>
         </p>
       </section>
     </main>
@@ -86,13 +415,12 @@
 
       <div class="footer-cue" aria-hidden="true">↓</div>
 
-      <div class="footer-right">
-        <p>
-          Pas de recette. Pas de plateforme imposée. <br>La réponse construite à partir de votre requête.
-        </p>
+      <p class="footer-copy">
+        Pas de recette. Pas de plateforme imposée.<br>
+        La réponse construite à partir de votre requête.
+      </p>
 
-        <span class="footer-plus" aria-hidden="true">i-[æ]-0</span>
-      </div>
+      <span class="footer-plus" aria-hidden="true">i-[æ]-0</span>
     </footer>
   </div>
 </body>
