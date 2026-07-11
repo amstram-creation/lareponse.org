@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LaRéponse Client Capability & Partnership Prospectus — what we do, how we work, and what we can build together.">
+  <meta name="theme-color" content="#19342f">
+  <title>LaRéponse — Client Capability & Partnership Prospectus</title>
+  <style>
+    :root {
+      --ink: #172521;
+      --ink-2: #2d403a;
+      --muted: #66756f;
+      --paper: #f4f1e9;
+      --surface: #fffdf8;
+      --surface-2: #ecefe8;
+      --line: #d8ddd5;
+      --accent: #9d3d22;
+      --accent-strong: #7f2f19;
+      --accent-soft: #f3ded4;
+      --green: #235e52;
+      --green-soft: #dceae5;
+      --gold-soft: #eee4c9;
+      --danger: #8d2d2d;
+      --shadow: 0 18px 50px rgba(24, 41, 35, .09);
+      --radius-sm: .65rem;
+      --radius: 1.1rem;
+      --radius-lg: 1.7rem;
+      --container: 1180px;
+      --header-h: 72px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 24px); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+    body.nav-open { overflow: hidden; }
+    button, input, textarea, select { font: inherit; }
+    a { color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1, h2, h3 { text-wrap: balance; }
+    h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -.035em; }
+    h1 { font-size: clamp(3.1rem, 8vw, 7.2rem); line-height: .93; margin-bottom: 1.5rem; }
+    h2 { font-size: clamp(2.35rem, 5vw, 4.6rem); line-height: 1.02; margin-bottom: 1.25rem; }
+    h3 { font-size: clamp(1.7rem, 3vw, 2.55rem); line-height: 1.15; margin-bottom: 0; }
+    h4 { font-size: 1rem; line-height: 1.35; margin-bottom: .55rem; }
+    ::selection { background: var(--accent-soft); color: var(--ink); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .container { width: min(calc(100% - 40px), var(--container)); margin-inline: auto; }
+    .skip-link { position: fixed; left: 16px; top: -100px; z-index: 1000; background: var(--ink); color: white; padding: .7rem 1rem; border-radius: .4rem; }
+    .skip-link:focus { top: 12px; }
+    .scroll-progress { position: fixed; inset: 0 auto auto 0; width: 0; height: 3px; background: var(--accent); z-index: 120; }
+
+    .site-header {
+      height: var(--header-h);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(216, 221, 213, .82);
+      background: rgba(244, 241, 233, .9);
+      backdrop-filter: blur(16px);
+    }
+    .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .wordmark { text-decoration: none; font-family: Georgia, "Times New Roman", serif; font-size: 1.45rem; font-weight: 700; letter-spacing: -.03em; }
+    .desktop-nav { display: flex; align-items: center; gap: 1.4rem; }
+    .desktop-nav a { color: var(--ink-2); text-decoration: none; font-size: .88rem; font-weight: 700; }
+    .desktop-nav a:hover, .desktop-nav a.is-active { color: var(--accent); }
+    .nav-cta { border: 1px solid var(--ink); padding: .62rem .95rem; border-radius: 999px; }
+    .nav-cta:hover { background: var(--ink); color: white !important; }
+    .menu-toggle { display: none; border: 0; background: transparent; padding: .5rem; color: var(--ink); }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: currentColor; margin: 5px 0; transition: transform .2s ease; }
+    .mobile-nav { display: none; position: fixed; inset: var(--header-h) 0 0; background: var(--paper); z-index: 95; padding: 2rem 20px; }
+    .mobile-nav a { display: block; text-decoration: none; font-family: Georgia, serif; font-size: 2rem; line-height: 1.2; padding: .65rem 0; border-bottom: 1px solid var(--line); }
+
+    .hero { min-height: calc(100vh - var(--header-h)); display: grid; align-items: center; padding: clamp(4rem, 9vw, 8rem) 0 5rem; overflow: hidden; position: relative; }
+    .hero::before { content: ""; position: absolute; width: 520px; aspect-ratio: 1; right: -180px; top: 7%; border-radius: 50%; background: radial-gradient(circle, rgba(157,61,34,.18), rgba(157,61,34,0) 70%); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(300px, .65fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: end; }
+    .eyebrow { margin-bottom: .9rem; font-size: .73rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+    .hero-lede { max-width: 780px; font-size: clamp(1.12rem, 2vw, 1.42rem); line-height: 1.55; color: var(--ink-2); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin: 2rem 0 1.5rem; }
+    .button {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      min-height: 48px;
+      padding: .74rem 1.15rem;
+      background: var(--ink);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      cursor: pointer;
+      transition: transform .16s ease, background .16s ease, color .16s ease, border-color .16s ease;
+    }
+    .button:hover { transform: translateY(-1px); background: var(--accent-strong); }
+    .button.secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .button.secondary:hover { background: var(--ink); color: white; }
+    .button.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+    .button.ghost:hover { background: var(--surface-2); }
+    .button.danger { background: transparent; color: var(--danger); border-color: rgba(141,45,45,.35); }
+    .button.small { min-height: 40px; padding: .55rem .85rem; font-size: .88rem; }
+    .hero-note { display: flex; align-items: center; gap: .65rem; color: var(--muted); font-size: .9rem; }
+    .hero-note::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px var(--green-soft); }
+    .sequence-card { background: var(--ink); color: white; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow); }
+    .sequence-card .eyebrow { color: #f0b99f; }
+    .sequence { display: grid; gap: .55rem; margin-top: 1.2rem; }
+    .sequence-step { display: grid; grid-template-columns: 32px 1fr; gap: .7rem; align-items: center; padding: .68rem .75rem; border: 1px solid rgba(255,255,255,.14); border-radius: .75rem; }
+    .sequence-step span { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.12); font-size: .74rem; font-weight: 800; }
+    .sequence-step strong { font-size: .9rem; }
+    .proposition-strip { padding: 0 0 clamp(4rem, 8vw, 7rem); }
+    .proposition-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+    .proposition-card { background: var(--surface); padding: clamp(1.4rem, 3vw, 2.2rem); }
+    .proposition-card span { display: block; color: var(--accent); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 900; margin-bottom: 1rem; }
+    .proposition-card h2 { font-family: inherit; font-size: 1.25rem; letter-spacing: -.02em; margin-bottom: .65rem; font-weight: 800; }
+    .proposition-card p { color: var(--muted); margin-bottom: 0; }
+    .promise { margin-top: 1.2rem; display: grid; grid-template-columns: .8fr 2fr; gap: 1.2rem; border-radius: var(--radius); padding: 1.25rem 1.4rem; background: var(--accent-soft); }
+    .promise strong { text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; color: var(--accent-strong); }
+    .promise p { margin: 0; font-weight: 700; }
+
+    .chapter { padding: clamp(5.5rem, 10vw, 10rem) 0; }
+    .chapter-alt { background: var(--surface); border-block: 1px solid var(--line); }
+    .chapter-intro { max-width: 850px; margin-bottom: clamp(4rem, 8vw, 7rem); }
+    .chapter-intro > p:last-child { max-width: 700px; color: var(--muted); font-size: 1.08rem; }
+    .chapter-sections { display: grid; gap: clamp(5rem, 10vw, 9rem); min-width: 0; }
+    .prospectus-section { display: grid; grid-template-columns: minmax(240px, .72fr) minmax(0, 1.5fr); gap: clamp(2rem, 6vw, 6rem); min-width: 0; }
+    .section-heading { min-width: 0; position: sticky; top: calc(var(--header-h) + 24px); align-self: start; display: grid; grid-template-columns: 48px 1fr; gap: 1rem; }
+    .section-heading .eyebrow { color: var(--muted); margin: .25rem 0 .5rem; }
+    .section-number { width: 45px; height: 45px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); color: var(--accent); font-size: .78rem; font-weight: 900; }
+    .section-content { min-width: 0; }
+    .section-content > p { color: var(--ink-2); max-width: 790px; }
+    .section-content > p:first-child { font-size: 1.22rem; color: var(--ink); }
+    .section-label { margin: 2.25rem 0 .8rem !important; color: var(--accent) !important; font-size: .73rem !important; letter-spacing: .14em; font-weight: 900; }
+    .mini-grid { display: grid; gap: .85rem; margin: 1.35rem 0; }
+    .mini-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mini-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mini-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .mini-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; background: rgba(255,255,255,.55); }
+    .chapter-alt .mini-card { background: var(--paper); }
+    .mini-card h4 { color: var(--accent-strong); }
+    .mini-card p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .principle-callout { margin: 1.6rem 0; padding: 1.25rem 1.4rem; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .callout-label { display: block; font-size: .72rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-strong); margin-bottom: .45rem; }
+    .principle-callout p { margin: 0; color: var(--ink-2); font-weight: 650; }
+    .feature-list { columns: 2; column-gap: 2.25rem; list-style: none; padding: 0; margin: 1.2rem 0 1.8rem; }
+    .feature-list li { break-inside: avoid; padding: .62rem 0 .62rem 1.3rem; border-bottom: 1px solid var(--line); position: relative; color: var(--ink-2); }
+    .feature-list li::before { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--green); left: 0; top: 1.25rem; }
+    .table-wrap { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); margin: 1.4rem 0; background: var(--surface); }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    th, td { text-align: left; vertical-align: top; padding: .9rem 1rem; border-bottom: 1px solid var(--line); }
+    th { background: var(--ink); color: white; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+    td { color: var(--ink-2); font-size: .92rem; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td { background: var(--surface-2); }
+    .pathway { display: grid; grid-template-columns: minmax(190px, .65fr) 1.35fr; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+    .pathway strong { color: var(--accent-strong); }
+    .pathway span { color: var(--muted); }
+
+    .questionnaire { padding: clamp(5.5rem, 10vw, 10rem) 0; background: var(--ink); color: white; }
+    .questionnaire .chapter-intro > p:last-child { color: rgba(255,255,255,.7); }
+    .questionnaire .eyebrow { color: #f0b99f; }
+    .questionnaire-shell { background: var(--surface); color: var(--ink); border-radius: var(--radius-lg); box-shadow: 0 35px 90px rgba(0,0,0,.26); overflow: hidden; }
+    .form-setup { padding: clamp(1.4rem, 4vw, 2.5rem); border-bottom: 1px solid var(--line); background: linear-gradient(135deg, var(--surface) 0%, #f2ede2 100%); }
+    .setup-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+    .setup-heading h3 { font-family: Georgia, serif; font-size: 2rem; margin-bottom: .4rem; }
+    .setup-heading p { color: var(--muted); margin-bottom: 0; max-width: 650px; }
+    .privacy-pill { flex: 0 0 auto; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: .5rem .75rem; color: var(--green); font-size: .78rem; font-weight: 800; }
+    .setup-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+    .field-group { display: grid; gap: .45rem; }
+    .field-group > label, .fieldset-label { font-size: .78rem; font-weight: 850; letter-spacing: .04em; }
+    input[type="text"], textarea, select { width: 100%; border: 1px solid #cbd2ca; border-radius: .75rem; background: #fff; color: var(--ink); padding: .82rem .9rem; box-shadow: inset 0 1px 0 rgba(0,0,0,.02); }
+    input[type="text"]:focus, textarea:focus, select:focus { border-color: var(--accent); outline: 3px solid rgba(157,61,34,.14); }
+    textarea { resize: vertical; min-height: 112px; line-height: 1.55; }
+    .choice-row { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .65rem; }
+    .choice-card { position: relative; }
+    .choice-card input { position: absolute; opacity: 0; pointer-events: none; }
+    .choice-card label { display: block; min-height: 100%; border: 1px solid #cbd2ca; border-radius: .75rem; padding: .8rem .85rem; cursor: pointer; background: #fff; }
+    .choice-card label strong { display: block; font-size: .88rem; margin-bottom: .1rem; }
+    .choice-card label small { color: var(--muted); }
+    .choice-card input:checked + label { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(157,61,34,.13); background: var(--accent-soft); }
+    .choice-card input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .setup-actions { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; margin-top: 1.25rem; }
+    .save-status { margin-left: auto; color: var(--muted); font-size: .82rem; }
+
+    .form-status-bar { padding: 1rem clamp(1.4rem,4vw,2.5rem); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; background: #fff; }
+    .progress-copy { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; font-size: .82rem; font-weight: 750; }
+    .progress-track { grid-column: 1 / -1; height: 6px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+    .form-tools { display: flex; flex-wrap: wrap; gap: .45rem; }
+
+    .form-workspace { display: grid; grid-template-columns: 270px minmax(0,1fr); min-height: 640px; }
+    .step-nav { padding: 1.4rem; border-right: 1px solid var(--line); background: #f3f0e8; }
+    .step-nav-inner { position: sticky; top: calc(var(--header-h) + 18px); }
+    .step-nav h4 { margin-bottom: .8rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .step-list { display: grid; gap: .35rem; }
+    .step-button { width: 100%; border: 0; background: transparent; color: var(--ink-2); border-radius: .65rem; padding: .7rem .65rem; text-align: left; display: grid; grid-template-columns: 30px 1fr auto; gap: .65rem; align-items: center; cursor: pointer; }
+    .step-button:hover { background: rgba(255,255,255,.72); }
+    .step-button.is-active { background: var(--ink); color: white; }
+    .step-letter { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; border: 1px solid currentColor; font-size: .72rem; font-weight: 900; }
+    .step-name { font-size: .82rem; line-height: 1.25; font-weight: 750; }
+    .step-count { font-size: .7rem; opacity: .72; }
+    .form-stage { padding: clamp(1.5rem, 5vw, 3.5rem); min-width: 0; }
+    .form-stage-header { display: grid; grid-template-columns: 48px 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .stage-letter { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent-strong); font-weight: 900; }
+    .form-stage-header h3 { font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: .45rem; }
+    .form-stage-header p { color: var(--muted); margin: 0; }
+    .questions-list { display: grid; gap: 1rem; }
+    .question-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; background: #fff; }
+    .question-topline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .7rem; }
+    .question-ref { font-size: .74rem; font-weight: 900; color: var(--accent); letter-spacing: .08em; }
+    .core-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: .22rem .5rem; background: var(--green-soft); color: var(--green); font-size: .68rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+    .question-card label { display: block; font-weight: 800; line-height: 1.4; margin-bottom: .35rem; }
+    .question-help { margin: 0 0 .75rem; color: var(--muted); font-size: .86rem; }
+    .question-card.is-answered { border-color: rgba(35,94,82,.45); box-shadow: inset 4px 0 0 var(--green); }
+    .stage-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+    .stage-actions-right { display: flex; flex-wrap: wrap; gap: .7rem; margin-left: auto; }
+
+    .brief-preview { display: none; border-top: 1px solid var(--line); background: #f1eee5; padding: clamp(1.5rem, 5vw, 3.5rem); }
+    .brief-preview.is-visible { display: block; }
+    .preview-header { display: flex; justify-content: space-between; align-items: start; gap: 1rem; margin-bottom: 2rem; }
+    .preview-header h3 { font-family: Georgia, serif; font-size: clamp(2rem, 4vw, 3.3rem); margin-bottom: .4rem; }
+    .preview-header p { color: var(--muted); max-width: 700px; }
+    .preview-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; }
+    .preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .preview-section { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; }
+    .preview-section h4 { font-family: Georgia, serif; font-size: 1.6rem; margin-bottom: 1rem; }
+    .preview-field { padding: .75rem 0; border-top: 1px solid var(--line); }
+    .preview-field:first-of-type { border-top: 0; padding-top: 0; }
+    .preview-field dt { font-size: .7rem; color: var(--accent); font-weight: 900; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .25rem; }
+    .preview-field dd { margin: 0; white-space: pre-wrap; color: var(--ink-2); }
+    .horizon-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .65rem; margin-bottom: 1rem; }
+    .horizon-card { padding: .85rem; border-radius: .75rem; background: var(--surface-2); }
+    .horizon-card strong { display: block; color: var(--accent-strong); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .35rem; }
+    .horizon-card p { margin: 0; font-size: .88rem; white-space: pre-wrap; }
+    .preview-note { margin-top: 1rem; padding: .9rem 1rem; background: var(--gold-soft); border-radius: .75rem; color: var(--ink-2); font-size: .86rem; }
+
+    .closing-disclaimer { padding: 2rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .83rem; }
+    .site-footer { padding: 2.5rem 0; background: var(--ink); color: rgba(255,255,255,.76); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .footer-inner strong { color: white; font-family: Georgia, serif; font-size: 1.25rem; }
+    .footer-inner p { margin: 0; font-size: .83rem; }
+
+    .toast { position: fixed; z-index: 150; right: 20px; bottom: 20px; max-width: 360px; padding: .85rem 1rem; border-radius: .75rem; background: var(--ink); color: white; box-shadow: var(--shadow); transform: translateY(130%); opacity: 0; transition: transform .2s ease, opacity .2s ease; }
+    .toast.is-visible { transform: translateY(0); opacity: 1; }
+    .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+
+    @media (max-width: 980px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: block; }
+      .mobile-nav.is-open { display: block; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .sequence-card { max-width: 650px; }
+      .prospectus-section { grid-template-columns: 1fr; gap: 1.6rem; }
+      .section-heading { position: static; }
+      .form-workspace { grid-template-columns: 1fr; }
+      .step-nav { border-right: 0; border-bottom: 1px solid var(--line); padding: .8rem 1rem; overflow-x: auto; }
+      .step-nav-inner { position: static; }
+      .step-nav h4 { display: none; }
+      .step-list { display: flex; min-width: max-content; }
+      .step-button { width: auto; grid-template-columns: 28px auto auto; }
+      .step-name { max-width: 160px; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(calc(100% - 28px), var(--container)); }
+      .proposition-grid, .setup-grid, .preview-grid { grid-template-columns: 1fr; }
+      .promise { grid-template-columns: 1fr; }
+      .mini-grid.cols-2, .mini-grid.cols-3, .mini-grid.cols-4 { grid-template-columns: 1fr; }
+      .feature-list { columns: 1; }
+      .pathway { grid-template-columns: 1fr; gap: .2rem; }
+      .setup-heading, .preview-header { display: block; }
+      .privacy-pill { display: inline-block; margin-top: 1rem; }
+      .choice-row { grid-template-columns: 1fr; }
+      .save-status { width: 100%; margin-left: 0; }
+      .form-status-bar { grid-template-columns: 1fr; }
+      .form-tools { justify-content: flex-start; }
+      .horizon-grid { grid-template-columns: 1fr; }
+      .footer-inner { display: block; }
+      .footer-inner p { margin-top: .5rem; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 3.15rem; }
+      .hero-actions .button { width: 100%; }
+      .form-stage, .brief-preview { padding-inline: 1rem; }
+      .step-name { display: none; }
+      .preview-actions { justify-content: flex-start; margin-top: 1rem; }
+      .button { width: 100%; }
+      .setup-actions .button, .form-tools .button, .preview-actions .button, .stage-actions .button { width: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      @page { margin: 16mm; }
+      .site-header, .scroll-progress, .toast { display: none !important; }
+      body { background: white; color: #111; font-size: 11pt; }
+      .chapter, .questionnaire { background: white !important; color: #111 !important; padding: 0; }
+      body.print-summary > * { display: none !important; }
+      body.print-summary #questionnaire { display: block !important; }
+      body.print-summary #questionnaire > .container > * { display: none !important; }
+      body.print-summary #questionnaire .questionnaire-shell { display: block !important; box-shadow: none; }
+      body.print-summary .questionnaire-shell > * { display: none !important; }
+      body.print-summary #briefPreview { display: block !important; padding: 0; background: white; }
+      body.print-summary .preview-actions, body.print-summary .preview-note { display: none !important; }
+      body.print-summary .preview-grid { display: block; }
+      body.print-summary .preview-section { break-inside: avoid; margin-bottom: 10mm; border: 1px solid #aaa; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="#top" aria-label="LaRéponse home">LaRéponse</a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#approach">Approach</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#working-model">Working model</a>
+        <a href="#possibilities">Partnership</a>
+        <a class="nav-cta" href="#questionnaire">Shape your prospectus</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#approach">Approach</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#working-model">Working model</a>
+    <a href="#possibilities">Partnership</a>
+    <a href="#questionnaire">Shape your prospectus</a>
+  </nav>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Client capability &amp; partnership prospectus</p>
+          <h1>From need<br>to capability.</h1>
+          <p class="hero-lede">LaRéponse helps organisations turn unclear digital pressure into an exact, testable first move—and turn what proves useful into lasting digital capability.</p>
+          <div class="hero-actions">
+            <a class="button" href="#capabilities">Explore what we do <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href="#questionnaire">Build your partnership brief</a>
+          </div>
+          <p class="hero-note">80% shared capability. 20% configured around your situation, evidence and responsibilities.</p>
+        </div>
+        <aside class="sequence-card" aria-label="LaRéponse working sequence">
+          <p class="eyebrow">The working sequence</p>
+          <div class="sequence">
+            <div class="sequence-step"><span>01</span><strong>Need</strong></div>
+            <div class="sequence-step"><span>02</span><strong>Exact intervention</strong></div>
+            <div class="sequence-step"><span>03</span><strong>Use and evidence</strong></div>
+            <div class="sequence-step"><span>04</span><strong>Recognised pattern</strong></div>
+            <div class="sequence-step"><span>05</span><strong>Capability</strong></div>
+            <div class="sequence-step"><span>06</span><strong>Durable operation</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="proposition-strip" aria-labelledby="proposition-title">
+      <div class="container">
+        <h2 class="sr-only" id="proposition-title">The LaRéponse proposition</h2>
+        <div class="proposition-grid">
+          <article class="proposition-card"><span>What we do</span><h2>Make the work clear and buildable</h2><p>Clarify, design, build, connect, stabilise and evolve digital products, services and operational systems.</p></article>
+          <article class="proposition-card"><span>What we can do</span><h2>Extend proven foundations</h2><p>Connect fragmented work, automate repeatable processes and create adjacent digital capabilities without multiplying avoidable complexity.</p></article>
+          <article class="proposition-card"><span>What we could do together</span><h2>Explore what becomes credible</h2><p>Keep future opportunity visible, while letting your context, constraints and real-use evidence determine what deserves to continue.</p></article>
+        </div>
+        <div class="promise"><strong>Our central promise</strong><p>We make the intended change explicit, build it responsibly, verify it in use, and continue only where the evidence supports continuation.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="approach"><div class="container"><header class="chapter-intro"><p class="eyebrow">Approach</p><h2>Begin with what is happening</h2><p>Digital work remains coherent when the need, the inherited field and the first useful change are made visible before structure accumulates around an assumption.</p></header><div class="chapter-sections"><article class="prospectus-section" id="why-digital-work-becomes-difficult" data-section="2"><div class="section-heading"><span class="section-number">02</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Why digital work becomes difficult</h3></div></div><div class="section-content"><p>Most difficulty enters before development begins.</p><div class="mini-grid cols-2"><article class="mini-card"><h4>A solution is named too early</h4><p>“We need a portal”, “we need AI” or “we need a redesign” may describe an assumed answer rather than the work that must change.</p></article><article class="mini-card"><h4>The inherited field is ignored</h4><p>Existing systems, habits, data, contracts and informal workarounds shape what is possible. New work never begins on a blank page.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Scope is expressed as objects</h4><p>Pages, screens and features are listed without specifying who needs them, what behaviour must change, or how success will be verified.</p></article><article class="mini-card"><h4>Responsibility remains implicit</h4><p>The client, provider and third parties may each assume that someone else owns decisions, content, access, data quality, testing or adoption.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Delivery and learning are confused</h4><p>A genuine defect, a changed preference, a new requirement and a newly discovered constraint are treated as though they were the same thing.</p></article><article class="mini-card"><h4>Complexity survives its purpose</h4><p>Features, procedures and integrations accumulate even after the work that justified them has moved elsewhere.</p></article></div><p>The result is often not a visible failure. It is drift: more activity, more structure and more cost, with less correspondence between the system and the work it is meant to support.</p><aside class="principle-callout"><span class="callout-label">THE LARÉPONSE RESPONSE</span><p>Begin with what is happening. Identify the smallest complete intervention that can make a useful difference. Let actual use reveal what should be preserved, corrected, extended, simplified or released.</p></aside></div></article><article class="prospectus-section" id="how-we-think-about-the-work" data-section="3"><div class="section-heading"><span class="section-number">03</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>How we think about the work</h3></div></div><div class="section-content"><p>Six principles keep delivery connected to reality.</p><div class="mini-grid cols-2"><article class="mini-card"><h4>1. Contact before category</h4><p>We examine the actual users, interactions, burdens, constraints and consequences before accepting inherited labels as the definition of the problem.</p></article><article class="mini-card"><h4>2. An exact first move before a total solution</h4><p>The first intervention does not need to contain the final system. It must change the present situation clearly enough to produce a useful response.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>3. Use before abstraction</h4><p>We learn from real behaviour. Recurrence becomes evidence; evidence reveals pattern; pattern justifies standardisation.</p></article><article class="mini-card"><h4>4. Responsibility before structure</h4><p>Roles, governance and process should carry real responsibilities. Structure without responsibility becomes overhead.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>5. Continuation by evidence, not inertia</h4><p>A system should continue because it remains useful and generative—not merely because it already exists.</p></article><article class="mini-card"><h4>6. Build within the inherited field</h4><p>We preserve valuable assets, work with genuine constraints and treat old systems as a source of both limitation and reusable material.</p></article></div><aside class="principle-callout"><span class="callout-label">THE WORKING SEQUENCE</span><p>Need → exact intervention → use → evidence → pattern → capability → durable operation</p></aside><p>This sequence does not prevent ambition. It disciplines ambition. Larger possibilities remain visible, but they are approached through decisions that can be understood, tested and owned.</p></div></article></div></div></section>
+    <section class="chapter chapter-alt" id="capabilities"><div class="container"><header class="chapter-intro"><p class="eyebrow">Capabilities</p><h2>From ambiguity to dependable operation</h2><p>LaRéponse combines definition, design, engineering, integration, automation, stabilisation and enablement as one connected capability.</p></header><div class="chapter-sections"><article class="prospectus-section" id="what-lareponse-does" data-section="4"><div class="section-heading"><span class="section-number">04</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>What LaRéponse does</h3></div></div><div class="section-content"><p>A connected capability, not a catalogue of disconnected services.</p><div class="table-wrap" tabindex="0" aria-label="Scrollable table"><table><thead><tr><th scope="col">CAPABILITY</th><th scope="col">WHAT WE DO</th><th scope="col">WHAT THE CLIENT GAINS</th></tr></thead><tbody><tr><td>Clarify</td><td>Reveal the real situation, users, workflow, constraints and desired change.</td><td>A shared, testable definition of the work.</td></tr><tr><td>Shape</td><td>Turn the definition into journeys, architecture, features, priorities and acceptance criteria.</td><td>A buildable first intervention and a visible decision path.</td></tr><tr><td>Build</td><td>Create websites, applications, portals, internal tools, interfaces and digital functionality.</td><td>A working product or capability that can be used and verified.</td></tr><tr><td>Connect</td><td>Integrate systems, data and services; remove avoidable handoffs and duplication.</td><td>More coherent operations and fewer hidden dependencies.</td></tr><tr><td>Automate</td><td>Encode repeatable workflows, approvals, notifications and transformations.</td><td>Reduced friction with explicit controls and responsibility.</td></tr><tr><td>Stabilise</td><td>Test, correct, deploy, document, monitor and hand over.</td><td>Reliable behaviour, clear ownership and a maintainable foundation.</td></tr><tr><td>Evolve</td><td>Prioritise new evidence, add capability, simplify or retire what no longer serves.</td><td>A product or system that can continue to change without losing coherence.</td></tr><tr><td>Enable</td><td>Make the system understandable to the people who operate, decide and depend on it.</td><td>Greater client autonomy and safer long-term evolution.</td></tr></tbody></table></div><p>The exact combination is agreed per engagement. Some clients need definition before any build. Others need a focused extension to an existing system. Others need an ongoing capability partner who can keep delivery, learning and governance connected.</p></div></article><article class="prospectus-section" id="clarify-the-work" data-section="5"><div class="section-heading"><span class="section-number">05</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Clarify the work</h3></div></div><div class="section-content"><p>A clear brief is not a longer brief. It is a testable agreement.</p><p>We turn ambiguous requests into a shared account of what is happening, what must become possible, and what evidence will show that the intervention has worked.</p><div class="mini-grid cols-2"><article class="mini-card"><h4>Situation and pressure</h4><p>What has changed? Where is friction visible? Why does the issue matter now?</p></article><article class="mini-card"><h4>People and relationships</h4><p>Who acts, decides, provides, receives, approves, supports or bears the consequence?</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Existing field</h4><p>Which systems, data, contracts, habits, workarounds and assets already shape the work?</p></article><article class="mini-card"><h4>Required behaviour</h4><p>What must a user or system be able to do, under which conditions, with which permissions and outcomes?</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Acceptance and evidence</h4><p>How will we distinguish a working result from an impression that the work is “finished”?</p></article><article class="mini-card"><h4>Dependencies and uncertainty</h4><p>What must be supplied, decided, accessed or tested before confidence can increase?</p></article></div><p class="section-label">TYPICAL DEFINITION OUTPUTS</p><ul class="feature-list"><li>Situation brief and problem framing</li><li>Stakeholder, user and workflow map</li><li>Inventory of relevant systems, data and dependencies</li><li>Prioritised feature or outcome definition</li><li>Acceptance criteria and evidence plan</li><li>Assumption, risk and decision log</li><li>Recommended first intervention and optional future horizons</li></ul><aside class="principle-callout"><span class="callout-label">EXAMPLE</span><p>“We need a client portal” becomes: which clients, which tasks, which information, which permissions, which service levels, which systems of record, and which observable outcome.</p></aside></div></article><article class="prospectus-section" id="design-and-build" data-section="6"><div class="section-heading"><span class="section-number">06</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Design and build</h3></div></div><div class="section-content"><p>The simplest durable form that can carry the required work.</p><p>LaRéponse translates the agreed definition into an experience, system and technical foundation. We choose the level of fidelity appropriate to the uncertainty: concept, prototype, pilot, production feature or complete product.</p><div class="mini-grid cols-2"><article class="mini-card"><h4>Websites and content experiences</h4><p>Clear, maintainable public-facing experiences, structured content and conversion or service journeys.</p></article><article class="mini-card"><h4>Web applications and portals</h4><p>Authenticated services for customers, members, partners or staff, with appropriate roles and permissions.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Internal tools and workflows</h4><p>Operational interfaces that replace fragmented spreadsheets, email chains or manual coordination.</p></article><article class="mini-card"><h4>Data capture and service forms</h4><p>Structured intake, validation, routing, approval and follow-up processes.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Dashboards and reporting interfaces</h4><p>Usable views of operational, customer or performance information.</p></article><article class="mini-card"><h4>Integrations and APIs</h4><p>Reliable exchange between systems, services and sources of record.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Prototypes and pilots</h4><p>Focused forms that test assumptions before larger commitments are made.</p></article><article class="mini-card"><h4>Technical foundations</h4><p>Architecture, environments, deployment, access, observability and documentation appropriate to the product.</p></article></div><p class="section-label">OUR BUILD BIAS</p><ul class="feature-list"><li>Use existing assets when they remain fit for purpose.</li><li>Select technology for suitability, maintainability and risk—not novelty alone.</li><li>Make important assumptions and dependencies visible.</li><li>Design for the real operating environment, including exceptions and handoffs.</li><li>Avoid creating a larger structure than the work can currently justify.</li></ul></div></article><article class="prospectus-section" id="connect-automate-and-augment" data-section="7"><div class="section-heading"><span class="section-number">07</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Connect, automate and augment</h3></div></div><div class="section-content"><p>Reduce friction without hiding responsibility.</p><p>Many organisations do not lack software. They lack correspondence between the systems they already have. LaRéponse can connect fragmented work, automate repeatable movement and introduce assistance where it improves a defined outcome.</p><div class="mini-grid cols-3"><article class="mini-card"><h4>Connect</h4><p>Integrate systems, synchronise data, standardise handoffs and expose useful functionality through APIs or shared services.</p></article><article class="mini-card"><h4>Automate</h4><p>Encode repeatable triggers, validations, approvals, notifications, transformations and scheduled operations.</p></article><article class="mini-card"><h4>Augment</h4><p>Add analytics, search, recommendation or AI-assisted steps where human judgement remains clear and the value can be evaluated.</p></article></div><p class="section-label">SUITABLE APPLICATIONS</p><ul class="feature-list"><li>Customer or employee onboarding</li><li>Lead, case, request or order routing</li><li>Document and content workflows</li><li>Cross-system data synchronisation</li><li>Approvals, notifications and exception handling</li><li>Knowledge retrieval and assisted service</li><li>Operational dashboards, alerts and decision support</li></ul><aside class="principle-callout"><span class="callout-label">AI IS TREATED AS A CAPABILITY, NOT A SLOGAN</span><p>Any AI-assisted workflow should have a defined user, source material, permission model, human oversight, failure path, privacy posture and measure of usefulness.</p></aside></div></article><article class="prospectus-section" id="stabilise-hand-over-and-evolve" data-section="8"><div class="section-heading"><span class="section-number">08</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Stabilise, hand over and evolve</h3></div></div><div class="section-content"><p>Delivery creates a working form. Use reveals what that form can support next.</p><div class="mini-grid cols-3"><article class="mini-card"><h4>Stabilise</h4><p>Test agreed behaviour, correct verified defects, address release issues and establish a reliable baseline.</p></article><article class="mini-card"><h4>Hand over</h4><p>Document the product, environments, dependencies, operating responsibilities and decision history.</p></article><article class="mini-card"><h4>Evolve</h4><p>Use evidence from real operation to prioritise extension, optimisation, simplification or retirement.</p></article></div><p class="section-label">TYPICAL STABILISATION WORK</p><ul class="feature-list"><li>Functional and acceptance testing</li><li>Defect triage and correction</li><li>Performance, reliability and accessibility checks appropriate to scope</li><li>Release and deployment support</li><li>Monitoring and operational documentation</li><li>Administrator or team handover</li><li>Known-issue, dependency and follow-up register</li></ul><aside class="principle-callout"><span class="callout-label">MAINTENANCE AND EVOLUTION ARE DIFFERENT</span><p>Maintenance preserves agreed behaviour. Evolution changes, expands or reinterprets that behaviour. Keeping the distinction visible protects both quality and commercial clarity.</p></aside><p>Not every observed request should become a feature. Repetition may reveal a pattern worth supporting; it may also reveal training, process, ownership or policy issues that software should not conceal.</p></div></article></div></div></section>
+    <section class="chapter" id="working-model"><div class="container"><header class="chapter-intro"><p class="eyebrow">Working model</p><h2>A visible sequence of evidence and responsibility</h2><p>Every stage answers a different question. Scope, acceptance, ownership and commercial treatment remain explicit as the work moves from definition into use.</p></header><div class="chapter-sections"><article class="prospectus-section" id="how-an-engagement-progresses" data-section="9"><div class="section-heading"><span class="section-number">09</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>How an engagement progresses</h3></div></div><div class="section-content"><p>Each stage answers a different question and creates the conditions for the next.</p><div class="table-wrap" tabindex="0" aria-label="Scrollable table"><table><thead><tr><th scope="col">STAGE</th><th scope="col">QUESTION</th><th scope="col">WORK</th><th scope="col">DECISION OR OUTPUT</th></tr></thead><tbody><tr><td>1. Contact</td><td>What is actually happening?</td><td>Interviews, observation, review of existing material and systems.</td><td>Shared situation statement.</td></tr><tr><td>2. Definition</td><td>What must change first?</td><td>Feature, outcome, evidence, dependency and scope definition.</td><td>Approved first intervention.</td></tr><tr><td>3. Construction</td><td>Can the defined change be made real?</td><td>Design, build, integration and technical validation.</td><td>Usable delivery candidate.</td></tr><tr><td>4. Exploration</td><td>How does it behave in real use?</td><td>Client testing, user feedback and operational observation.</td><td>Evidence, defects and new learning.</td></tr><tr><td>5. Stabilisation</td><td>Does it meet the agreed definition reliably?</td><td>Defect correction, release hardening, documentation and handover.</td><td>Accepted baseline.</td></tr><tr><td>6. Evolution</td><td>What has use shown to be worth changing next?</td><td>Prioritisation, new features, optimisation, simplification or retirement.</td><td>Next defined cycle.</td></tr><tr><td>7. Embedding</td><td>What must become dependable beyond a project?</td><td>Ownership, process, training, governance and continuity design.</td><td>Durable client capability.</td></tr></tbody></table></div><p>Stages can be compressed or repeated. A small enhancement may move through the sequence quickly. A new product may cycle through it many times. The discipline is to know which question is being answered and which responsibility is active.</p></div></article><article class="prospectus-section" id="definition-acceptance-and-evidence" data-section="10"><div class="section-heading"><span class="section-number">10</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Definition, acceptance and evidence</h3></div></div><div class="section-content"><p>A feature is complete when the agreed behaviour can be verified—not simply when code exists.</p><div class="mini-grid cols-2"><article class="mini-card"><h4>Intended change</h4><p>The difference the feature or intervention should create.</p></article><article class="mini-card"><h4>User and context</h4><p>Who needs the behaviour, under which conditions and permissions.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Required behaviour</h4><p>What the system must do, including important exceptions or limits.</p></article><article class="mini-card"><h4>Acceptance criteria</h4><p>Observable conditions that distinguish working behaviour from a defect.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Dependencies and assumptions</h4><p>Access, content, data, decisions, platforms or third parties on which delivery relies.</p></article><article class="mini-card"><h4>Evidence after delivery</h4><p>What real use should reveal before extension, standardisation or further investment.</p></article></div><p class="section-label">AT EACH DECISION POINT, THE AVAILABLE CHOICES REMAIN EXPLICIT</p><div class="mini-grid cols-3"><article class="mini-card"><h4>Continue</h4><p>The evidence supports the next defined step.</p></article><article class="mini-card"><h4>Adapt</h4><p>The intended outcome remains valid, but the form or assumption should change.</p></article><article class="mini-card"><h4>Pause or release</h4><p>The value is insufficient, the conditions are absent, or another intervention matters more.</p></article></div><aside class="principle-callout"><span class="callout-label">WHY THIS MATTERS</span><p>A visible decision gate prevents a pilot from becoming a permanent system by inertia and prevents a temporary workaround from acquiring responsibilities it cannot safely carry.</p></aside></div></article><article class="prospectus-section" id="responsibility-and-governance" data-section="11"><div class="section-heading"><span class="section-number">11</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Responsibility and governance</h3></div></div><div class="section-content"><p>Clarity of responsibility is part of the product.</p><div class="table-wrap" tabindex="0" aria-label="Scrollable table"><table><thead><tr><th scope="col">RESPONSIBILITY</th><th scope="col">WHAT IT INCLUDES</th></tr></thead><tbody><tr><td>LaRéponse</td><td>Frame options, identify assumptions, estimate and deliver agreed work, test technical behaviour, document decisions and risks, and communicate material changes.</td></tr><tr><td>The client</td><td>Provide business context, access, content and data; appoint decision-makers; test in the operating context; approve priorities, trade-offs and acceptance.</td></tr><tr><td>Shared</td><td>Define outcomes, maintain the decision and risk record, distinguish defects from changes, resolve ambiguity and decide whether to continue, adapt or stop.</td></tr><tr><td>Third parties</td><td>Provide platform, vendor or specialist services under their own terms. Dependencies, limits and escalation routes are made visible where relevant.</td></tr></tbody></table></div><p class="section-label">A WORKABLE GOVERNANCE PATTERN</p><ul class="feature-list"><li>One accountable client sponsor for outcome and priority decisions</li><li>One working owner for day-to-day context, access and coordination</li><li>A named LaRéponse lead for delivery and escalation</li><li>A visible backlog or feature register</li><li>An agreed review and decision cadence</li><li>A decision, assumption and risk log proportionate to the engagement</li><li>A clear route for urgent incidents and third-party dependencies</li></ul><aside class="principle-callout"><span class="callout-label">ROLE FOLLOWS RESPONSIBILITY</span><p>LaRéponse does not assume ownership merely because work is technical. The client does not inherit technical risk without explanation. Ownership is named where the responsibility actually sits.</p></aside></div></article><article class="prospectus-section" id="commercial-engagement-models" data-section="12"><div class="section-heading"><span class="section-number">12</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Commercial engagement models</h3></div></div><div class="section-content"><p>The commercial form should match the uncertainty and continuity of the work.</p><div class="mini-grid cols-3"><article class="mini-card"><h4>Definition engagement</h4><p>For an important need that is not yet precise enough to price or build responsibly. Produces a situation brief, first intervention and decision-ready scope.</p></article><article class="mini-card"><h4>Defined delivery</h4><p>For a feature set or outcome that can be agreed in advance. Scope, assumptions, acceptance and commercial terms are documented before construction.</p></article><article class="mini-card"><h4>Capability partnership</h4><p>For continuing product or operational evolution. Work is prioritised in cycles and delivered through an agreed capacity, retainer or development-credit model.</p></article></div><p class="section-label">WHERE DEVELOPMENT CREDITS ARE USED</p><ul class="feature-list"><li>Requests are converted into a defined feature, task or investigation before credits are consumed.</li><li>Priority and estimated credit use are made visible before work begins.</li><li>Usage, remaining balance and status remain transparent.</li><li>Verified defects are treated according to the agreed acceptance and warranty terms, not silently converted into new work.</li><li>Urgent, exceptional or out-of-hours work is agreed separately where it requires different capacity or risk.</li></ul><p>Exact pricing, credit values, validity, warranty, service levels and payment terms belong in the proposal or agreement for the specific engagement.</p><aside class="principle-callout"><span class="callout-label">COMMERCIAL PRINCIPLE</span><p>The client should understand what is being purchased, which uncertainty remains, what evidence will be produced and what decision follows.</p></aside></div></article><article class="prospectus-section" id="defects-changes-and-new-learning" data-section="13"><div class="section-heading"><span class="section-number">13</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Defects, changes and new learning</h3></div></div><div class="section-content"><p>The same symptom can imply different responsibilities. Classification should follow the agreed definition and evidence.</p><div class="table-wrap" tabindex="0" aria-label="Scrollable table"><table><thead><tr><th scope="col">TYPE</th><th scope="col">MEANING</th><th scope="col">TREATMENT</th></tr></thead><tbody><tr><td>Defect</td><td>Delivered behaviour does not meet an agreed acceptance criterion under the agreed conditions.</td><td>Triage, reproduce and correct under the applicable delivery or warranty terms.</td></tr><tr><td>Change</td><td>The desired behaviour differs from, expands or replaces the agreed definition.</td><td>Define, estimate, prioritise and commission as new work.</td></tr><tr><td>Investigation</td><td>The cause, ownership or appropriate solution is not yet known.</td><td>Time-box diagnosis, gather evidence, then classify the resulting work.</td></tr><tr><td>External issue</td><td>Behaviour is caused by a third-party platform, vendor, data source, policy or environment outside direct control.</td><td>Document impact, mitigate where possible and coordinate escalation or alternatives.</td></tr><tr><td>Operational or adoption issue</td><td>The system behaves as agreed, but process, content, training, ownership or usage prevents the intended outcome.</td><td>Address the relevant operating condition rather than treating every issue as a software feature.</td></tr></tbody></table></div><p>This distinction is not used to avoid responsibility. It is used to place responsibility accurately, protect the quality baseline and make new decisions explicit.</p></div></article></div></div></section>
+    <section class="chapter chapter-alt" id="possibilities"><div class="container"><header class="chapter-intro"><p class="eyebrow">Partnership</p><h2>Keep larger possibilities visible without selling them too early</h2><p>Proven patterns can become durable client capability. Possibility remains conditional until use produces the evidence that justifies the next form.</p></header><div class="chapter-sections"><article class="prospectus-section" id="what-lareponse-can-do-next" data-section="14"><div class="section-heading"><span class="section-number">14</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>What LaRéponse can do next</h3></div></div><div class="section-content"><p>Established capability can be combined to address adjacent needs.</p><div class="mini-grid cols-2"><article class="mini-card"><h4>Customer and member experience</h4><p>Self-service journeys, client portals, onboarding, service access, account areas, content and communication flows.</p></article><article class="mini-card"><h4>Operational systems</h4><p>Internal tools, case handling, approvals, scheduling, fulfilment, coordination and workflow visibility.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Data and decision support</h4><p>Common data views, dashboards, alerts, operational measures, reporting and evidence for decisions.</p></article><article class="mini-card"><h4>Integration and automation</h4><p>Cross-system synchronisation, APIs, triggers, validation, notifications and reduction of repeated manual work.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>AI-assisted capability</h4><p>Knowledge retrieval, drafting, classification, summarisation, guidance or decision support with appropriate oversight.</p></article><article class="mini-card"><h4>Product and platform evolution</h4><p>Turning repeated, proven functionality into reusable modules, services, platforms or client-owned product capability.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Existing-system renewal</h4><p>Clarifying, simplifying, restructuring or replacing a system whose visible form no longer corresponds to the work.</p></article><article class="mini-card"><h4>Capability transfer</h4><p>Documentation, training, governance and operating practices that reduce dependence and improve safe client ownership.</p></article></div><aside class="principle-callout"><span class="callout-label">NOT EVERY NEED REQUIRES NEW SOFTWARE</span><p>Sometimes the correct next move is to simplify a process, retire an unused feature, repair ownership, improve content, expose existing data or connect tools that already work.</p></aside></div></article><article class="prospectus-section" id="what-we-could-do-together" data-section="15"><div class="section-heading"><span class="section-number">15</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>What we could do together</h3></div></div><div class="section-content"><p>“Could” describes an opportunity hypothesis—not work already sold.</p><p>The most valuable future capability is often not visible at the beginning. It becomes legible when the first intervention enters real use and patterns begin to repeat.</p><p class="section-label">SIGNALS THAT MAY JUSTIFY A LARGER CAPABILITY</p><ul class="feature-list"><li>The same request, exception or workaround recurs across users or teams.</li><li>A responsibility exists in practice but has no dependable system, role or record around it.</li><li>Customers repeatedly ask for access, visibility or self-service that the current model cannot provide.</li><li>Decisions depend on information that exists but is fragmented, late or difficult to trust.</li><li>An existing system preserves an outdated procedure while the actual work has moved elsewhere.</li><li>A successful local solution is being copied informally and now requires a shared standard.</li><li>The cost of coordination has become greater than the work being coordinated.</li></ul><div class="mini-grid cols-3"><article class="mini-card"><h4>Now</h4><p>The first defined intervention: committed, scoped and verifiable.</p></article><article class="mini-card"><h4>Next</h4><p>An adjacent capability considered only if agreed evidence appears.</p></article><article class="mini-card"><h4>Later</h4><p>A strategic opportunity territory that informs architecture and choices without becoming premature scope.</p></article></div><aside class="principle-callout"><span class="callout-label">OUR DISCIPLINE</span><p>We keep later possibilities visible so the first move does not create a dead end. We do not present those possibilities as inevitable outcomes or commitments.</p></aside></div></article><article class="prospectus-section" id="illustrative-capability-pathways" data-section="16"><div class="section-heading"><span class="section-number">16</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Illustrative capability pathways</h3></div></div><div class="section-content"><p>Examples of how an exact intervention can become a durable organisational capacity.</p><div class="pathway"><strong>Public presence → digital service</strong><span>Website → structured content → qualified enquiry → client account → self-service or transaction capability</span></div><div class="pathway"><strong>Manual work → operational system</strong><span>Mapped process → focused internal tool → shared workflow → integration → controlled automation</span></div><div class="pathway"><strong>Fragmented data → decision support</strong><span>Source inventory → common model → trusted dashboard → alerts → forecasting or assisted decision-making</span></div><div class="pathway"><strong>Repeated support → scalable service</strong><span>Recurring question map → knowledge base → self-service → assisted support → integrated service platform</span></div><div class="pathway"><strong>Local solution → reusable capability</strong><span>Pilot → observed pattern → common component → governance → product or platform service</span></div><div class="pathway"><strong>Legacy complexity → coherent foundation</strong><span>System review → preserve/release decisions → staged renewal → migration → maintainable operating model</span></div><p>These pathways are not prescriptions. The value of the partnership is the ability to recognise which progression is actually occurring, which threshold has been reached and which structure the work can responsibly bear.</p></div></article><article class="prospectus-section" id="a-partnership-that-can-mature" data-section="17"><div class="section-heading"><span class="section-number">17</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>A partnership that can mature</h3></div></div><div class="section-content"><p>A role should be earned by repeated responsibility, not declared in advance.</p><div class="mini-grid cols-2"><article class="mini-card"><h4>Project</h4><p>A defined intervention is delivered and accepted.</p></article><article class="mini-card"><h4>Pattern</h4><p>Repeated work reveals a stable need and a useful delivery rhythm.</p></article></div><div class="mini-grid cols-2"><article class="mini-card"><h4>Partnership</h4><p>Responsibilities, decisions and continuity become dependable on both sides.</p></article><article class="mini-card"><h4>Capability</h4><p>The client gains a system, practice and ownership model that can continue beyond individual projects.</p></article></div><p>LaRéponse can remain a focused delivery partner, become a continuing product and capability partner, or help transfer the work into a client-owned operating model. The appropriate form depends on the responsibility being carried and the continuity the work requires.</p><p class="section-label">WHAT A MATURE PARTNERSHIP SHOULD PRODUCE</p><ul class="feature-list"><li>Faster movement from pressure to a defined decision</li><li>A shared language for features, evidence, defects and changes</li><li>Visible priorities, dependencies and ownership</li><li>Technical foundations that remain understandable and changeable</li><li>Less reliance on informal memory or individual heroics</li><li>The ability to expand proven capability without multiplying avoidable complexity</li></ul><aside class="principle-callout"><span class="callout-label">AT EVERY STAGE, CONTINUATION IS EARNED</span><p>The relationship should continue because it remains useful, transparent and capable of producing meaningful next steps—not because either party has become trapped by the structure around it.</p></aside></div></article></div></div></section>
+
+    <section class="questionnaire" id="questionnaire">
+      <div class="container">
+        <header class="chapter-intro">
+          <p class="eyebrow">Client-specific 20%</p>
+          <h2>Shape the prospectus around your organisation</h2>
+          <p>Use the guided form to capture the situation, first useful move, conditional opportunity horizons and the operating relationship. Choose a rapid route for core questions or a full route for deeper definition.</p>
+        </header>
+
+        <div class="questionnaire-shell">
+          <section class="form-setup" aria-labelledby="setupTitle">
+            <div class="setup-heading">
+              <div><h3 id="setupTitle">Set up the conversation</h3><p>The form is designed for a guided client interview. Answers are saved only in this browser unless you export them.</p></div>
+              <span class="privacy-pill">Local draft only</span>
+            </div>
+            <div class="setup-grid">
+              <div class="field-group">
+                <label for="clientName">Organisation or account name</label>
+                <input id="clientName" type="text" autocomplete="organization" placeholder="Client or initiative name">
+              </div>
+              <div class="field-group">
+                <label for="preparedBy">Prepared by</label>
+                <input id="preparedBy" type="text" autocomplete="name" placeholder="Name or team">
+              </div>
+              <fieldset class="field-group" style="border:0;padding:0;margin:0">
+                <legend class="fieldset-label">Engagement route</legend>
+                <div class="choice-row">
+                  <div class="choice-card"><input type="radio" name="engagement" id="engagementProspect" value="prospect"><label for="engagementProspect"><strong>Prospect</strong><small>New relationship or opportunity</small></label></div>
+                  <div class="choice-card"><input type="radio" name="engagement" id="engagementExisting" value="existing"><label for="engagementExisting"><strong>Current customer</strong><small>Includes delivered-work review</small></label></div>
+                  <div class="choice-card"><input type="radio" name="engagement" id="engagementPrevious" value="previous"><label for="engagementPrevious"><strong>Returning customer</strong><small>Reassess the inherited field</small></label></div>
+                  <div class="choice-card"><input type="radio" name="engagement" id="engagementPartner" value="partner"><label for="engagementPartner"><strong>Partner opportunity</strong><small>Joint or referred opportunity</small></label></div>
+                  <div class="choice-card"><input type="radio" name="engagement" id="engagementInternal" value="internal"><label for="engagementInternal"><strong>Internal initiative</strong><small>LaRéponse-owned working context</small></label></div>
+                </div>
+              </fieldset>
+              <fieldset class="field-group" style="border:0;padding:0;margin:0">
+                <legend class="fieldset-label">Question depth</legend>
+                <div class="choice-row">
+                  <div class="choice-card"><input type="radio" name="mode" id="modeCore" value="core"><label for="modeCore"><strong>Rapid route</strong><small>Core questions first</small></label></div>
+                  <div class="choice-card"><input type="radio" name="mode" id="modeFull" value="full"><label for="modeFull"><strong>Full route</strong><small>Complete definition and evidence</small></label></div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="setup-actions">
+              <button class="button" id="startForm" type="button">Start or resume</button>
+              <button class="button ghost small" id="importAnswers" type="button">Import answers</button>
+              <input class="sr-only" id="importFile" type="file" accept="application/json,.json">
+              <span class="save-status" id="saveStatus" aria-live="polite">No draft saved yet.</span>
+            </div>
+          </section>
+
+          <div class="form-status-bar" aria-live="polite">
+            <div class="progress-copy"><span id="overallProgress">0 of 0 visible questions answered</span><span id="coreProgress">0 of 0 core questions answered</span></div>
+            <div class="form-tools">
+              <button class="button ghost small" id="findIncomplete" type="button">First unanswered core</button>
+              <button class="button ghost small" id="exportAnswers" type="button">Export answers</button>
+              <button class="button danger small" id="clearDraft" type="button">Clear draft</button>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="Questionnaire completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+
+          <div class="form-workspace">
+            <aside class="step-nav" aria-label="Questionnaire sections"><div class="step-nav-inner"><h4>Sections</h4><div class="step-list" id="stepList"></div></div></aside>
+            <section class="form-stage" id="formStage" aria-live="polite"></section>
+          </div>
+
+          <section class="brief-preview" id="briefPreview" aria-labelledby="previewTitle">
+            <div class="preview-header">
+              <div><p class="eyebrow">Draft client-specific 20%</p><h3 id="previewTitle">Partnership brief preview</h3><p id="previewSubtitle">The preview arranges the answers into the four client-specific prospectus sections. It does not infer missing facts.</p></div>
+              <div class="preview-actions">
+                <button class="button ghost small" id="copyBrief" type="button">Copy text</button>
+                <button class="button ghost small" id="downloadBrief" type="button">Download text</button>
+                <button class="button small" id="printBrief" type="button">Print / save PDF</button>
+              </div>
+            </div>
+            <div class="preview-grid" id="previewGrid"></div>
+            <p class="preview-note">Review every statement before client use. Distinguish current facts from hypotheses, keep “Next” and “Later” conditional, and move final scope, timing, pricing and legal terms into the client-specific proposal or agreement.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter-alt" id="begin"><div class="container"><header class="chapter-intro"><p class="eyebrow">Ways to begin</p><h2>Choose the entry point that matches the clarity of the work</h2><p>The right beginning may be definition, focused delivery, an existing-system review or a continuing capability partnership.</p></header><div class="chapter-sections"><article class="prospectus-section" id="ways-to-begin" data-section="22"><div class="section-heading"><span class="section-number">22</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Ways to begin</h3></div></div><div class="section-content"><p>Choose the entry point that matches the current level of clarity.</p><div class="mini-grid cols-3"><article class="mini-card"><h4>Definition</h4><p>Use when the pressure is important but the correct product, scope or first move is uncertain. The output is a decision-ready intervention brief.</p></article><article class="mini-card"><h4>Defined delivery</h4><p>Use when the intended behaviour, constraints and acceptance can be agreed. The output is a working, testable delivery and an accepted baseline.</p></article><article class="mini-card"><h4>Capability partnership</h4><p>Use when the product or operation needs continuing evolution. The output is a transparent rhythm of definition, delivery, evidence and decision.</p></article></div><p>A current system review can precede any of these entry points when the main question is what to preserve, simplify, connect, replace or retire.</p><p class="section-label">THE NEXT CONVERSATION</p><p>Begin with a structured situation session. LaRéponse will use the Client Customisation Questionnaire to understand the current field, identify the first useful move and prepare the client-specific portion of this prospectus.</p><aside class="principle-callout"><span class="callout-label">A USEFUL BEGINNING</span><p>Not a complete answer in advance. An exact change that makes the next answer possible.</p></aside></div></article><article class="prospectus-section" id="build-what-deserves-to-continue" data-section="23"><div class="section-heading"><span class="section-number">23</span><div><p class="eyebrow">CAPABILITY &amp; PARTNERSHIP</p><h3>Build what deserves to continue</h3></div></div><div class="section-content"><p>Useful systems remain connected to the work, relationships and responsibilities they exist to support.</p><p>LaRéponse helps organisations encounter what is happening before inherited labels settle the matter. We define the first useful change, create a form that can be tested, and let use reveal what should follow.</p><p>When a pattern proves valuable, we help make it dependable. When a structure no longer serves, we help simplify, release or recombine what remains. The aim is not permanent expansion. It is coherent capability: a digital product, service or operating system that can continue because it still produces meaningful value.</p><aside class="principle-callout"><span class="callout-label">THE LARÉPONSE PROPOSITION</span><p>Make the first move exact. Deliver it responsibly. Learn from the response. Give proven value the form and continuity it requires.</p></aside><p>This prospectus describes general capabilities and a proposed way of working. It is not a statement of work, offer, warranty or commitment. Final scope, responsibilities, acceptance, pricing, timing and legal terms are defined in the client-specific proposal or agreement.</p></div></article></div></div></section>
+
+    <div class="closing-disclaimer"><div class="container">This prospectus describes general capabilities and a proposed way of working. It is not a statement of work, offer, warranty or commitment. Final scope, responsibilities, acceptance, pricing, timing and legal terms are defined in the client-specific proposal or agreement.</div></div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><strong>LaRéponse</strong><p>Define the right change. Deliver it clearly. Learn from use. Build what deserves to continue.</p></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    'use strict';
+    const QUESTIONNAIRE = {"version":1,"sections":{"A":{"key":"A","title":"Organisation and engagement context","description":"Establish who the client is, why the conversation exists and which version of the prospectus is being prepared.","questions":[{"id":"A1","core":true,"question":"What is the organisation, business unit or initiative?","help":"Include the name, operating scope, geography and relevant offer or service."},{"id":"A2","core":true,"question":"Who is the primary respondent, and what responsibility do they carry?","help":"Record role, decision authority and proximity to the work."},{"id":"A3","core":false,"question":"Who will read the prospectus?","help":"Examples: executive sponsor, operational owner, procurement, technical lead, board or partner."},{"id":"A4","core":true,"question":"Why is LaRéponse being asked to engage now?","help":"Capture the trigger, not only the requested deliverable."},{"id":"A5","core":false,"question":"What outcome does the sponsor hope this document will support?","help":"Examples: internal alignment, budget approval, provider selection, next-cycle decision or partnership review."},{"id":"A6","core":false,"question":"Which strategic priorities are relevant?","help":"Use the client’s stated priorities and avoid generic claims."},{"id":"A7","core":false,"question":"Which facts or language are confidential or require approval before inclusion?","help":"Note names, metrics, security details, customer data and commercial sensitivities."},{"id":"A8","core":false,"question":"Who must approve the client-specific text before issue?","help":"Name the approver and expected review route."}]},"B":{"key":"B","title":"Current pressure and evidence","description":"Describe what is happening in observable terms before discussing a preferred solution.","questions":[{"id":"B1","core":true,"question":"What is happening today that creates pressure, friction or opportunity?","help":"Ask for a concrete recent example."},{"id":"B2","core":true,"question":"Who experiences the consequence?","help":"Customers, staff, partners, managers, regulators, suppliers or another group."},{"id":"B3","core":true,"question":"What is the consequence?","help":"Time, cost, revenue, service quality, risk, frustration, delay, missed opportunity or dependency."},{"id":"B4","core":false,"question":"How frequently does the situation occur?","help":"Continuous, daily, weekly, seasonal, event-driven or exceptional."},{"id":"B5","core":false,"question":"How is the problem currently measured or noticed?","help":"Metrics, complaints, support volume, rework, delays, lost leads, incidents or qualitative observation."},{"id":"B6","core":false,"question":"What changed recently?","help":"Growth, policy, team, market, technology, ownership, client expectations, failure or strategic direction."},{"id":"B7","core":false,"question":"What happens if nothing changes?","help":"Describe near-term and longer-term consequences."},{"id":"B8","core":false,"question":"What has already been tried?","help":"Include tools, process changes, vendors, prototypes and informal workarounds."},{"id":"B9","core":false,"question":"Why did previous attempts succeed only partially or fail?","help":"Look for missing conditions, ownership, adoption, integration, definition or evidence."},{"id":"B10","core":false,"question":"Which parts of the situation are facts, and which are assumptions?","help":"Label uncertainties that the first intervention may need to test."}]},"C":{"key":"C","title":"People, users and relationships","description":"Make the human and organisational field visible: who acts, decides, provides, receives and bears responsibility.","questions":[{"id":"C1","core":true,"question":"Who are the primary users or participants?","help":"Describe roles and contexts, not only demographic categories."},{"id":"C2","core":false,"question":"Who receives the result but does not operate the system?","help":"Examples: customers, managers, auditors, partners or downstream teams."},{"id":"C3","core":false,"question":"Who currently performs the work, including informal or hidden work?","help":"Identify manual coordination, data cleaning, copying, checking or exception handling."},{"id":"C4","core":true,"question":"Who owns the desired outcome?","help":"Distinguish sponsor, process owner, product owner and technical owner."},{"id":"C5","core":false,"question":"Who can approve priorities, scope changes and acceptance?","help":"Record the actual decision route."},{"id":"C6","core":false,"question":"Whose cooperation or behaviour must change for the intervention to work?","help":"Include people outside the immediate project team."},{"id":"C7","core":false,"question":"Where do responsibilities overlap, disappear or remain disputed?","help":"These gaps often produce requirements that software alone cannot resolve."},{"id":"C8","core":false,"question":"Which users or stakeholders are easiest to overlook?","help":"Examples: administrators, support staff, occasional users, accessibility needs or external partners."},{"id":"C9","core":false,"question":"What would make users trust, adopt or reject the new capability?","help":"Ask about evidence, control, speed, familiarity, transparency and failure recovery."}]},"D":{"key":"D","title":"The inherited field: systems, process, data and assets","description":"Understand what already shapes the work. Identify what should be preserved, connected, simplified, replaced or released.","questions":[{"id":"D1","core":true,"question":"Which systems, platforms or tools are involved today?","help":"Include official systems, spreadsheets, email, messaging and shadow tools."},{"id":"D2","core":false,"question":"Which system is the source of record for each important type of information?","help":"Note where there is no trusted source."},{"id":"D3","core":true,"question":"What is the current workflow from trigger to outcome?","help":"Capture handoffs, approvals, exceptions and re-entry of information."},{"id":"D4","core":false,"question":"Where is information copied, transformed or checked manually?","help":"These are candidates for connection or automation, but may also contain judgement."},{"id":"D5","core":false,"question":"Which integrations already exist, and who owns them?","help":"Include APIs, exports, imports, middleware, scripts and vendor connectors."},{"id":"D6","core":false,"question":"What data is available, missing, unreliable or restricted?","help":"Record format, quality, volume, retention, permissions and sensitivity where relevant."},{"id":"D7","core":true,"question":"Which existing assets are valuable and should be preserved?","help":"Code, content, design, data, domains, contracts, processes, expertise, trust or user habits."},{"id":"D8","core":false,"question":"Which structures appear to continue without serving the original purpose?","help":"Features, approvals, reports, roles, integrations or procedures that may have drifted."},{"id":"D9","core":false,"question":"Which third parties constrain or enable the work?","help":"Vendors, agencies, hosting, identity providers, payment services, regulators or partners."},{"id":"D10","core":false,"question":"What technical documentation, access and environments exist?","help":"Repositories, credentials, architecture, test data, deployment and monitoring."},{"id":"D11","core":false,"question":"What upcoming change could alter the field?","help":"Migrations, renewals, policy deadlines, reorganisation, launches, acquisitions or platform deprecation."},{"id":"D12","core":false,"question":"What must not be disrupted?","help":"Critical operations, legal obligations, customer commitments, seasonal periods or data integrity."}]},"E":{"key":"E","title":"Desired change and success conditions","description":"Define the difference the client needs—not only the object they expect to buy.","questions":[{"id":"E1","core":true,"question":"What should become possible that is not reliably possible today?","help":"Use a verb and a user or system actor."},{"id":"E2","core":true,"question":"For whom should this difference be visible?","help":"Primary user, operator, recipient, owner or decision-maker."},{"id":"E3","core":false,"question":"What should become easier, faster, safer, clearer or more dependable?","help":"Ask for the quality of the change."},{"id":"E4","core":false,"question":"What should remain unchanged?","help":"Identify valuable continuity and avoid accidental disruption."},{"id":"E5","core":true,"question":"What observable evidence would show that the first intervention works?","help":"Behaviour, completion, reduced rework, adoption, data quality, service result or accepted technical criteria."},{"id":"E6","core":false,"question":"Which outcomes matter later but do not need to be produced by the first intervention?","help":"Protect future options without turning them into current scope."},{"id":"E7","core":false,"question":"What would make the client decide not to continue?","help":"Define stopping, pause or redesign conditions."},{"id":"E8","core":false,"question":"Which outcome is essential, and which outcomes are desirable?","help":"Separate minimum useful change from ambition."},{"id":"E9","core":false,"question":"What is the client’s assumed solution, and what evidence supports it?","help":"Record the request without treating it as settled."}]},"F":{"key":"F","title":"The first useful move","description":"Identify the smallest complete intervention that can create useful change and new evidence.","questions":[{"id":"F1","core":true,"question":"What is the smallest intervention that could materially change the present situation?","help":"It must be complete enough to use, not merely a technical fragment."},{"id":"F2","core":false,"question":"Which uncertainty should this intervention reduce?","help":"User behaviour, feasibility, data, integration, adoption, ownership, commercial value or operating risk."},{"id":"F3","core":false,"question":"Which users, journey or process slice should be included first?","help":"Choose a coherent boundary."},{"id":"F4","core":false,"question":"What should be explicitly excluded from the first move?","help":"Prevent the later horizon from entering current scope by implication."},{"id":"F5","core":false,"question":"What evidence can be gathered during or immediately after use?","help":"Define signals and who will observe them."},{"id":"F6","core":false,"question":"What existing asset can the first move reuse?","help":"Preserve good foundations and reduce unnecessary change."},{"id":"F7","core":false,"question":"Could a process, content or ownership change solve part of the need without software?","help":"Avoid building around a problem that belongs elsewhere."},{"id":"F8","core":false,"question":"What decision should follow the first move?","help":"Continue, adapt, scale, integrate, pause, retire or transfer."},{"id":"F9","core":false,"question":"What would make the first move too small to be useful—or too large to learn from?","help":"Test the proposed boundary from both sides."}]},"G":{"key":"G","title":"Constraints, risk and delivery conditions","description":"Make the conditions of responsible delivery visible before commitment.","questions":[{"id":"G1","core":true,"question":"Is there a required date or external deadline?","help":"Distinguish a fixed event from a preferred target."},{"id":"G2","core":false,"question":"What budget or capacity range is available for the first intervention?","help":"Record a range or approval threshold where exact budget is unavailable."},{"id":"G3","core":true,"question":"Which security, privacy, regulatory or contractual conditions apply?","help":"Include data residency, access, consent, audit, industry obligations and client policies."},{"id":"G4","core":false,"question":"Which accessibility, language, device or browser requirements matter?","help":"Include users with assistive technology and operational contexts."},{"id":"G5","core":false,"question":"Which systems or vendors can LaRéponse access, and under what conditions?","help":"Identify procurement, credentials, sandbox, API and support limitations."},{"id":"G6","core":false,"question":"What data may be used for design, testing and production?","help":"Clarify sensitive data, anonymisation, test data and retention."},{"id":"G7","core":false,"question":"What internal capacity can the client provide?","help":"Sponsor time, working owner, content, subject expertise, testing, technical support and change management."},{"id":"G8","core":false,"question":"What failure modes would be unacceptable?","help":"Service interruption, wrong decision, data loss, disclosure, missed legal step or reputational harm."},{"id":"G9","core":false,"question":"What assumptions could invalidate the proposed intervention?","help":"Record the conditions that need early verification."},{"id":"G10","core":false,"question":"Which dependencies are outside both parties’ direct control?","help":"Third-party approvals, platform changes, vendors, data sources or partner decisions."},{"id":"G11","core":false,"question":"Are there periods in which release or change is restricted?","help":"Peak trading, reporting, events, audits or operational freezes."}]},"H":{"key":"H","title":"Delivery, governance and commercial fit","description":"Design the working relationship as deliberately as the technical intervention.","questions":[{"id":"H1","core":true,"question":"Who is the accountable sponsor?","help":"Name and decisions owned."},{"id":"H2","core":true,"question":"Who is the day-to-day working owner?","help":"Context, coordination, access, testing and issue resolution."},{"id":"H3","core":false,"question":"Who else must participate, and at which decisions?","help":"Technical, content, legal, security, procurement, finance, operations or users."},{"id":"H4","core":false,"question":"What review and demonstration cadence would support timely decisions?","help":"Avoid a cadence the client cannot sustain."},{"id":"H5","core":false,"question":"How should priorities, scope changes and acceptance be approved?","help":"Name the route and record format."},{"id":"H6","core":false,"question":"Which communication channels and records should be used?","help":"Project system, email, messaging, meetings, shared documents or ticketing."},{"id":"H7","core":false,"question":"Which commercial model best matches the uncertainty?","help":"Definition engagement, defined delivery, capability partnership, development credits or another agreed form."},{"id":"H8","core":false,"question":"How should urgent work be identified and authorised?","help":"Separate operational urgency from normal priority."},{"id":"H9","core":false,"question":"What handover, documentation or client enablement is required?","help":"Consider future ownership and staff turnover."},{"id":"H10","core":true,"question":"When should value and continuation be reviewed?","help":"Define the review point and evidence to consider."}]},"I":{"key":"I","title":"Opportunity horizons: now, next and later","description":"Keep ambition visible without converting possibility into premature scope.","questions":[{"id":"I1","core":true,"question":"NOW: What is the first defined capability?","help":"State the user, behaviour, evidence and boundary."},{"id":"I2","core":false,"question":"NEXT: Which adjacent capability becomes sensible if the first move works?","help":"Name the evidence that would justify it."},{"id":"I3","core":false,"question":"LATER: What longer-term opportunity should the first design avoid blocking?","help":"Strategic possibility, not a commitment."},{"id":"I4","core":false,"question":"Which recurring behaviour or request would signal that a pattern is forming?","help":"Look for repetition across users, time or contexts."},{"id":"I5","core":false,"question":"Which responsibility might eventually require a role, workflow or dependable system?","help":"Do not formalise it before the responsibility is real."},{"id":"I6","core":false,"question":"Which local solution could become reusable across teams, customers or services?","help":"Identify conditions for standardisation."},{"id":"I7","core":false,"question":"Which existing form may need simplification, retirement or recombination?","help":"Features, tools, processes, reports or integrations."},{"id":"I8","core":false,"question":"What architecture or data choice should preserve later options?","help":"Only include choices proportionate to credible horizons."},{"id":"I9","core":false,"question":"What evidence would tell us not to pursue the next or later horizon?","help":"Define restraint as well as ambition."},{"id":"I10","core":false,"question":"Write the one-sentence opportunity statement.","help":"[Client] could move from [limitation] to [capability] by first proving [condition]."}]},"J":{"key":"J","title":"Existing-customer review module","description":"Use this section when LaRéponse and the client already share delivered work, evidence and responsibilities.","questions":[{"id":"J1","core":true,"question":"What has already been delivered or established together?","help":"Capabilities, systems, features, documents, routines or access."},{"id":"J2","core":true,"question":"What has actual use revealed since delivery?","help":"Adoption, unexpected behaviour, defects, workarounds, benefits and new constraints."},{"id":"J3","core":false,"question":"Which requests or issues are recurring?","help":"Repeated events may indicate a pattern or a missing responsibility."},{"id":"J4","core":false,"question":"Which parts are stable and should not be disturbed?","help":"Protect the accepted baseline."},{"id":"J5","core":false,"question":"Which parts have accumulated complexity or lost correspondence with the work?","help":"Look for outward growth with inward decay."},{"id":"J6","core":false,"question":"Which responsibilities have become clearer—or moved—since the last engagement?","help":"Update ownership and governance."},{"id":"J7","core":false,"question":"How have available systems, data, vendors or constraints changed?","help":"The inherited field is no longer the same as at project start."},{"id":"J8","core":false,"question":"What has produced measurable or credible value?","help":"Use evidence that can be approved for the prospectus."},{"id":"J9","core":false,"question":"What should be corrected, changed, simplified or retired?","help":"Classify each item accurately."},{"id":"J10","core":true,"question":"What is the next decision the partnership needs to make?","help":"Not only the next feature request."},{"id":"J11","core":false,"question":"Does the current commercial and operating model still fit the work?","help":"Consider cadence, credits, ownership, urgency and continuity."},{"id":"J12","core":false,"question":"What capability should the client increasingly own?","help":"Documentation, administration, content, support, analytics, product decisions or technical operation."}]},"K":{"key":"K","title":"Materials, validation and approval","description":"Collect the artefacts that allow the client-specific narrative to be accurate, evidenced and authorised.","questions":[{"id":"K1","core":true,"question":"Which documents or artefacts should LaRéponse review?","help":"Strategy, process maps, analytics, requirements, architecture, contracts, research, tickets or prior proposals."},{"id":"K2","core":false,"question":"Which systems or workflows should be demonstrated?","help":"Record presenter and access route."},{"id":"K3","core":false,"question":"Which users or stakeholders should be interviewed?","help":"Prioritise by responsibility and evidence, not seniority alone."},{"id":"K4","core":false,"question":"Which claims require supporting evidence?","help":"Metrics, scale, performance, customer impact, compliance or commercial value."},{"id":"K5","core":false,"question":"Which client terminology, brand and tone rules should be followed?","help":"Include names, capitalisation and language preferences."},{"id":"K6","core":true,"question":"Who approves the final prospectus and by what date or decision point?","help":"Record the route; do not assume approval from participation."}]}},"order":["A","B","C","D","E","F","G","H","I","J","K"]};
+    const STORAGE_KEY = 'lareponse-client-prospectus-draft-v1';
+    const EMPTY = 'To be confirmed';
+    let state = {
+      version: 1,
+      meta: { clientName: '', preparedBy: '', engagement: 'prospect', mode: 'core' },
+      answers: {},
+      updatedAt: null
+    };
+    let currentSectionIndex = 0;
+    let saveTimer = null;
+    let toastTimer = null;
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+    const escapeHTML = (value = '') => String(value).replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+    const clean = value => String(value || '').trim();
+    const answer = id => clean(state.answers[id]);
+    const fallback = (id, value = EMPTY) => answer(id) || value;
+    const clientLabel = () => clean(state.meta.clientName) || answer('A1') || 'Client';
+    const isCustomerRoute = () => ['existing', 'previous'].includes(state.meta.engagement);
+    const routeSections = () => {
+      const route = ['A','B','C','D','E','F','G','H','I'];
+      if (isCustomerRoute()) route.push('J');
+      route.push('K');
+      return route;
+    };
+    const visibleQuestions = key => QUESTIONNAIRE.sections[key].questions.filter(q => state.meta.mode === 'full' || q.core);
+    const allRouteQuestions = () => routeSections().flatMap(key => visibleQuestions(key));
+    const allCoreQuestions = () => routeSections().flatMap(key => QUESTIONNAIRE.sections[key].questions.filter(q => q.core));
+    const hasAnswer = id => Boolean(answer(id));
+
+    function showToast(message) {
+      const el = $('#toast');
+      el.textContent = message;
+      el.classList.add('is-visible');
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => el.classList.remove('is-visible'), 2600);
+    }
+
+    function loadDraft() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.version === 1 && parsed.meta && parsed.answers) state = parsed;
+      } catch (error) {
+        console.warn('Draft could not be loaded.', error);
+      }
+    }
+
+    function saveDraft(immediate = false) {
+      const commit = () => {
+        state.updatedAt = new Date().toISOString();
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          updateSaveStatus();
+        } catch (error) {
+          $('#saveStatus').textContent = 'Browser storage is unavailable. Export answers to keep a copy.';
+        }
+      };
+      window.clearTimeout(saveTimer);
+      if (immediate) commit();
+      else saveTimer = window.setTimeout(commit, 350);
+    }
+
+    function updateSaveStatus() {
+      const el = $('#saveStatus');
+      if (!state.updatedAt) { el.textContent = 'No draft saved yet.'; return; }
+      const d = new Date(state.updatedAt);
+      el.textContent = `Draft saved locally · ${d.toLocaleDateString([], {day:'2-digit', month:'short'})} ${d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
+    }
+
+    function syncSetupControls() {
+      $('#clientName').value = state.meta.clientName || '';
+      $('#preparedBy').value = state.meta.preparedBy || '';
+      const engagement = $(`input[name="engagement"][value="${state.meta.engagement}"]`);
+      if (engagement) engagement.checked = true;
+      const mode = $(`input[name="mode"][value="${state.meta.mode}"]`);
+      if (mode) mode.checked = true;
+      updateSaveStatus();
+    }
+
+    function routeIndexForSection(key) { return routeSections().indexOf(key); }
+
+    function renderStepList() {
+      const route = routeSections();
+      if (currentSectionIndex >= route.length) currentSectionIndex = route.length - 1;
+      const html = route.map((key, index) => {
+        const info = QUESTIONNAIRE.sections[key];
+        const qs = visibleQuestions(key);
+        const done = qs.filter(q => hasAnswer(q.id)).length;
+        return `<button class="step-button ${index === currentSectionIndex ? 'is-active' : ''}" type="button" data-step="${index}" aria-current="${index === currentSectionIndex ? 'step' : 'false'}"><span class="step-letter">${key}</span><span class="step-name">${escapeHTML(info.title)}</span><span class="step-count">${done}/${qs.length}</span></button>`;
+      }).join('');
+      $('#stepList').innerHTML = html;
+      $$('.step-button', $('#stepList')).forEach(button => button.addEventListener('click', () => {
+        currentSectionIndex = Number(button.dataset.step);
+        renderQuestionnaire();
+        $('#formStage').scrollIntoView({behavior:'smooth', block:'start'});
+      }));
+    }
+
+    function renderQuestionnaire(focusQuestionId = '') {
+      const route = routeSections();
+      if (!route.length) return;
+      if (currentSectionIndex < 0) currentSectionIndex = 0;
+      if (currentSectionIndex >= route.length) currentSectionIndex = route.length - 1;
+      const key = route[currentSectionIndex];
+      const info = QUESTIONNAIRE.sections[key];
+      const qs = visibleQuestions(key);
+      renderStepList();
+
+      const questionHTML = qs.map(q => {
+        const value = state.answers[q.id] || '';
+        return `<article class="question-card ${clean(value) ? 'is-answered' : ''}" data-card="${q.id}">
+          <div class="question-topline"><span class="question-ref">${q.id}</span>${q.core ? '<span class="core-badge">Core</span>' : ''}</div>
+          <label for="q-${q.id}">${escapeHTML(q.question)}</label>
+          <p class="question-help" id="help-${q.id}">${escapeHTML(q.help)}</p>
+          <textarea id="q-${q.id}" data-question="${q.id}" aria-describedby="help-${q.id}" placeholder="Response, evidence, examples or uncertainties…">${escapeHTML(value)}</textarea>
+        </article>`;
+      }).join('');
+
+      const isLast = currentSectionIndex === route.length - 1;
+      $('#formStage').innerHTML = `<header class="form-stage-header"><span class="stage-letter">${key}</span><div><p class="eyebrow">Questionnaire section ${currentSectionIndex + 1} of ${route.length}</p><h3>${escapeHTML(info.title)}</h3><p>${escapeHTML(info.description)}</p></div></header>
+        <div class="questions-list">${questionHTML}</div>
+        <div class="stage-actions">
+          <button class="button ghost" id="previousStep" type="button" ${currentSectionIndex === 0 ? 'disabled' : ''}>Previous</button>
+          <div class="stage-actions-right">
+            <button class="button secondary" id="previewBrief" type="button">Generate brief preview</button>
+            <button class="button" id="nextStep" type="button">${isLast ? 'Review brief' : 'Next section'}</button>
+          </div>
+        </div>`;
+
+      $$('textarea[data-question]', $('#formStage')).forEach(textarea => {
+        autoGrow(textarea);
+        textarea.addEventListener('input', event => {
+          const id = event.target.dataset.question;
+          state.answers[id] = event.target.value;
+          event.target.closest('.question-card').classList.toggle('is-answered', Boolean(clean(event.target.value)));
+          autoGrow(event.target);
+          saveDraft();
+          updateProgress();
+          renderStepList();
+        });
+      });
+      $('#previousStep').addEventListener('click', () => { currentSectionIndex -= 1; renderQuestionnaire(); $('#formStage').scrollIntoView({behavior:'smooth', block:'start'}); });
+      $('#nextStep').addEventListener('click', () => {
+        if (isLast) generatePreview(true);
+        else { currentSectionIndex += 1; renderQuestionnaire(); $('#formStage').scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+      $('#previewBrief').addEventListener('click', () => generatePreview(true));
+      updateProgress();
+
+      if (focusQuestionId) {
+        requestAnimationFrame(() => {
+          const target = $(`#q-${CSS.escape(focusQuestionId)}`);
+          if (target) { target.focus(); target.scrollIntoView({behavior:'smooth', block:'center'}); }
+        });
+      }
+    }
+
+    function autoGrow(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${Math.max(112, Math.min(textarea.scrollHeight, 360))}px`;
+    }
+
+    function updateProgress() {
+      const visible = allRouteQuestions();
+      const visibleAnswered = visible.filter(q => hasAnswer(q.id)).length;
+      const core = allCoreQuestions();
+      const coreAnswered = core.filter(q => hasAnswer(q.id)).length;
+      const percent = visible.length ? Math.round((visibleAnswered / visible.length) * 100) : 0;
+      $('#overallProgress').textContent = `${visibleAnswered} of ${visible.length} visible questions answered`;
+      $('#coreProgress').textContent = `${coreAnswered} of ${core.length} core questions answered`;
+      $('#progressFill').style.width = `${percent}%`;
+      const track = $('.progress-track');
+      track.setAttribute('aria-valuenow', String(percent));
+    }
+
+    function findFirstUnansweredCore() {
+      const route = routeSections();
+      for (let i = 0; i < route.length; i += 1) {
+        const q = QUESTIONNAIRE.sections[route[i]].questions.find(item => item.core && !hasAnswer(item.id));
+        if (q) {
+          if (state.meta.mode !== 'core' && !visibleQuestions(route[i]).some(item => item.id === q.id)) state.meta.mode = 'full';
+          currentSectionIndex = i;
+          syncSetupControls();
+          renderQuestionnaire(q.id);
+          return;
+        }
+      }
+      showToast('All core questions on this route have an answer.');
+    }
+
+    function field(label, value) {
+      return `<dl class="preview-field"><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(clean(value) || EMPTY)}</dd></dl>`;
+    }
+
+    function previewSection(title, content) {
+      return `<article class="preview-section"><h4>${escapeHTML(title)}</h4>${content}</article>`;
+    }
+
+    function generatePreview(scroll = false) {
+      const client = clientLabel();
+      const current = isCustomerRoute();
+      const situationContent = current
+        ? field('Client / account', client)
+          + field('Delivered foundation', fallback('J1'))
+          + field('What use has revealed', fallback('J2'))
+          + field('Current pressure or opportunity', answer('B1') || fallback('J10'))
+          + field('Stable assets to preserve', answer('J4') || fallback('D7'))
+          + field('Why now', answer('A4') || answer('B6') || fallback('B7'))
+        : field('Client / initiative', client)
+          + field('Current situation', fallback('B1'))
+          + field('Who experiences it', fallback('B2'))
+          + field('Observable consequence', fallback('B3'))
+          + field('Why now', answer('A4') || answer('B6') || fallback('B7'))
+          + field('Assets to preserve', fallback('D7'));
+
+      const firstMove = answer('F1') || answer('I1') || answer('E1') || EMPTY;
+      const firstMoveContent = field('Recommended first useful move', firstMove)
+        + field('Intended change', fallback('E1'))
+        + field('Primary users', answer('E2') || fallback('C1'))
+        + field('First slice / scope', answer('F3') || fallback('D3'))
+        + field('Acceptance evidence', answer('E5') || fallback('F5'))
+        + field('Key uncertainty', fallback('F2'))
+        + field('Assets reused', answer('F6') || fallback('D7'))
+        + field('Explicit exclusions', fallback('F4'))
+        + field('Decision at the end', fallback('F8'));
+
+      const horizons = `<div class="horizon-grid">
+        <div class="horizon-card"><strong>Now — defined</strong><p>${escapeHTML(answer('I1') || firstMove)}</p></div>
+        <div class="horizon-card"><strong>Next — conditional</strong><p>${escapeHTML(fallback('I2'))}</p></div>
+        <div class="horizon-card"><strong>Later — opportunity</strong><p>${escapeHTML(fallback('I3'))}</p></div>
+      </div>`;
+      const signals = [answer('I4'), answer('I5'), answer('I6'), answer('I7'), answer('I9')].filter(Boolean);
+      const signalHTML = signals.length
+        ? `<dl class="preview-field"><dt>Signals to watch</dt><dd><ul>${signals.map(x => `<li>${escapeHTML(x)}</li>`).join('')}</ul></dd></dl>`
+        : field('Signals to watch', EMPTY);
+      const opportunity = answer('I10') || `${client} could move from a current limitation to a more dependable capability by first proving the critical behaviour or condition.`;
+      const unlockContent = horizons + signalHTML + field('Opportunity statement', opportunity);
+
+      const workingContent = field('Accountable sponsor', fallback('H1'))
+        + field('Day-to-day working owner', fallback('H2'))
+        + field('Outcome owner', answer('C4') || fallback('C5'))
+        + field('Review and demonstration cadence', fallback('H4'))
+        + field('Decision route', fallback('H5'))
+        + field('Commercial form', fallback('H7'))
+        + field('Deadline or first milestone', fallback('G1'))
+        + field('Security, privacy and contractual conditions', fallback('G3'))
+        + field('Client contribution', fallback('G7'))
+        + field('Value and continuation review', fallback('H10'));
+
+      $('#previewGrid').innerHTML = previewSection('Your situation', situationContent)
+        + previewSection('The first useful move', firstMoveContent)
+        + previewSection('What this could unlock', unlockContent)
+        + previewSection('How we would work together', workingContent);
+      $('#previewTitle').textContent = `${client} — partnership brief preview`;
+      const core = allCoreQuestions();
+      const coreAnswered = core.filter(q => hasAnswer(q.id)).length;
+      $('#previewSubtitle').textContent = `${coreAnswered} of ${core.length} core questions are answered. The preview arranges supplied evidence and leaves missing material marked “To be confirmed”.`;
+      $('#briefPreview').classList.add('is-visible');
+      saveDraft(true);
+      if (scroll) $('#briefPreview').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function buildPlainTextBrief() {
+      const client = clientLabel();
+      const current = isCustomerRoute();
+      const lines = [
+        'LARÉPONSE — CLIENT-SPECIFIC PARTNERSHIP BRIEF',
+        client,
+        '',
+        '1. YOUR SITUATION',
+        `Client / initiative: ${client}`,
+        current ? `Delivered foundation: ${fallback('J1')}` : `Current situation: ${fallback('B1')}`,
+        current ? `What use has revealed: ${fallback('J2')}` : `Who experiences it: ${fallback('B2')}`,
+        `Consequence / pressure: ${answer('B3') || answer('J10') || EMPTY}`,
+        `Why now: ${answer('A4') || answer('B6') || answer('B7') || EMPTY}`,
+        `Assets to preserve: ${answer('J4') || answer('D7') || EMPTY}`,
+        '',
+        '2. THE FIRST USEFUL MOVE',
+        `Recommended intervention: ${answer('F1') || answer('I1') || answer('E1') || EMPTY}`,
+        `Intended change: ${fallback('E1')}`,
+        `Primary users: ${answer('E2') || answer('C1') || EMPTY}`,
+        `First slice / scope: ${answer('F3') || answer('D3') || EMPTY}`,
+        `Acceptance evidence: ${answer('E5') || answer('F5') || EMPTY}`,
+        `Key uncertainty: ${fallback('F2')}`,
+        `Explicit exclusions: ${fallback('F4')}`,
+        `Decision at the end: ${fallback('F8')}`,
+        '',
+        '3. WHAT THIS COULD UNLOCK',
+        `NOW — Defined: ${answer('I1') || answer('F1') || EMPTY}`,
+        `NEXT — Conditional: ${fallback('I2')}`,
+        `LATER — Opportunity: ${fallback('I3')}`,
+        `Opportunity statement: ${answer('I10') || EMPTY}`,
+        '',
+        '4. HOW WE WOULD WORK TOGETHER',
+        `Accountable sponsor: ${fallback('H1')}`,
+        `Working owner: ${fallback('H2')}`,
+        `Cadence: ${fallback('H4')}`,
+        `Decision route: ${fallback('H5')}`,
+        `Commercial form: ${fallback('H7')}`,
+        `Deadline / milestone: ${fallback('G1')}`,
+        `Security / privacy / contractual conditions: ${fallback('G3')}`,
+        `Value and continuation review: ${fallback('H10')}`,
+        '',
+        'Review note: Distinguish facts from hypotheses. Keep NEXT and LATER conditional. Confirm final scope, timing, pricing and legal terms separately.'
+      ];
+      return lines.join('\n');
+    }
+
+    function slugFileName(value) {
+      return clean(value).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'client';
+    }
+
+    function downloadBlob(content, type, filename) {
+      const blob = new Blob([content], {type});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportAnswers() {
+      saveDraft(true);
+      const payload = {
+        kind: 'lareponse-client-questionnaire',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        state,
+        responses: routeSections().map(key => ({
+          section: key,
+          title: QUESTIONNAIRE.sections[key].title,
+          questions: QUESTIONNAIRE.sections[key].questions.map(q => ({id:q.id, core:q.core, question:q.question, response:answer(q.id)}))
+        }))
+      };
+      downloadBlob(JSON.stringify(payload, null, 2), 'application/json', `${slugFileName(clientLabel())}-lareponse-questionnaire.json`);
+      showToast('Answers exported.');
+    }
+
+    function importAnswers(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          const imported = parsed.state || parsed;
+          if (!imported || imported.version !== 1 || !imported.meta || !imported.answers) throw new Error('Unsupported file');
+          state = imported;
+          currentSectionIndex = 0;
+          syncSetupControls();
+          renderQuestionnaire();
+          saveDraft(true);
+          showToast('Answers imported.');
+        } catch (error) { showToast('This file is not a compatible LaRéponse questionnaire export.'); }
+      };
+      reader.readAsText(file);
+    }
+
+    async function copyBrief() {
+      const text = buildPlainTextBrief();
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Brief copied to the clipboard.');
+      } catch (error) {
+        const temp = document.createElement('textarea');
+        temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand('copy'); temp.remove();
+        showToast('Brief copied to the clipboard.');
+      }
+    }
+
+    function clearDraft() {
+      if (!window.confirm('Clear all questionnaire answers and the locally saved draft?')) return;
+      state = {version:1, meta:{clientName:'',preparedBy:'',engagement:'prospect',mode:'core'}, answers:{}, updatedAt:null};
+      currentSectionIndex = 0;
+      try { localStorage.removeItem(STORAGE_KEY); } catch (error) {}
+      syncSetupControls();
+      renderQuestionnaire();
+      $('#briefPreview').classList.remove('is-visible');
+      showToast('Draft cleared.');
+    }
+
+    function bindSetup() {
+      $('#clientName').addEventListener('input', event => { state.meta.clientName = event.target.value; saveDraft(); });
+      $('#preparedBy').addEventListener('input', event => { state.meta.preparedBy = event.target.value; saveDraft(); });
+      $$('input[name="engagement"]').forEach(input => input.addEventListener('change', event => {
+        const currentKey = routeSections()[currentSectionIndex];
+        state.meta.engagement = event.target.value;
+        const nextIndex = routeIndexForSection(currentKey);
+        currentSectionIndex = nextIndex >= 0 ? nextIndex : 0;
+        saveDraft(); renderQuestionnaire();
+      }));
+      $$('input[name="mode"]').forEach(input => input.addEventListener('change', event => { state.meta.mode = event.target.value; saveDraft(); renderQuestionnaire(); }));
+      $('#startForm').addEventListener('click', () => { $('#formStage').scrollIntoView({behavior:'smooth', block:'start'}); const first = $('textarea', $('#formStage')); if (first) setTimeout(() => first.focus(), 500); });
+      $('#findIncomplete').addEventListener('click', findFirstUnansweredCore);
+      $('#exportAnswers').addEventListener('click', exportAnswers);
+      $('#clearDraft').addEventListener('click', clearDraft);
+      $('#importAnswers').addEventListener('click', () => $('#importFile').click());
+      $('#importFile').addEventListener('change', event => { if (event.target.files[0]) importAnswers(event.target.files[0]); event.target.value = ''; });
+      $('#copyBrief').addEventListener('click', copyBrief);
+      $('#downloadBrief').addEventListener('click', () => { downloadBlob(buildPlainTextBrief(), 'text/plain;charset=utf-8', `${slugFileName(clientLabel())}-lareponse-partnership-brief.txt`); showToast('Brief downloaded.'); });
+      $('#printBrief').addEventListener('click', () => { generatePreview(false); document.body.classList.add('print-summary'); window.print(); });
+      window.addEventListener('afterprint', () => document.body.classList.remove('print-summary'));
+    }
+
+    function setupNavigation() {
+      const toggle = $('#menuToggle');
+      const nav = $('#mobileNav');
+      const close = () => { nav.classList.remove('is-open'); document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Open navigation'); };
+      toggle.addEventListener('click', () => {
+        const open = !nav.classList.contains('is-open');
+        nav.classList.toggle('is-open', open); document.body.classList.toggle('nav-open', open);
+        toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      });
+      $$('a', nav).forEach(a => a.addEventListener('click', close));
+
+      const navLinks = $$('.desktop-nav a[href^="#"]');
+      const observed = ['approach','capabilities','working-model','possibilities','questionnaire'];
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${visible.target.id}`));
+      }, {rootMargin:'-25% 0px -62% 0px', threshold:[0,.1,.3]});
+      observed.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    }
+
+    function setupScrollProgress() {
+      const update = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        $('#scrollProgress').style.width = `${Math.min(100, Math.max(0,pct))}%`;
+      };
+      update(); window.addEventListener('scroll', update, {passive:true}); window.addEventListener('resize', update);
+    }
+
+    loadDraft();
+    syncSetupControls();
+    bindSetup();
+    renderQuestionnaire();
+    setupNavigation();
+    setupScrollProgress();
+  </script>
+</body>
+</html>
