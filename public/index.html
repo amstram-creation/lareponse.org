@@ -235,6 +235,7 @@
       top: 64.257813vh;
       left: 9.635417vw;
       margin: 0;
+      font-size: min(14.648438vw, 21.972656vh);
       line-height: 1;
       white-space: nowrap;
     }
@@ -244,7 +245,7 @@
       z-index: 1;
       display: block;
       font-family: "Anton", Impact, Haettenschweiler, sans-serif;
-      font-size: min(14.648438vw, 21.972656vh);
+      font-size: inherit;
       font-weight: 400;
       line-height: 1;
       letter-spacing: -0.015em;
@@ -255,10 +256,10 @@
     .answer-strike {
       position: absolute;
       z-index: 3;
-      top: 10.839844vh;
-      left: -1.953125vw;
-      width: 45.703125vw;
-      height: 4.296875vh;
+      top: 0.591em;
+      left: -0.133em;
+      width: 3.12em;
+      height: 0.196em;
       background: var(--ink);
       clip-path: polygon(
         0% 52%,
@@ -287,7 +288,7 @@
         4% 76%,
         1% 89%
       );
-      transform: rotate(-0.55deg);
+      transform: translateY(-50%) rotate(-0.55deg);
       transform-origin: left center;
     }
 
@@ -295,12 +296,12 @@
       content: "";
       position: absolute;
       z-index: 4;
-      top: 12.45vh;
-      left: -2.05vw;
-      width: 45.9vw;
-      height: 0.55vh;
+      top: 0.579em;
+      left: -0.14em;
+      width: 3.133em;
+      height: 0.025em;
       background: var(--ink);
-      transform: rotate(-0.35deg);
+      transform: translateY(-50%) rotate(-0.35deg);
       transform-origin: left center;
     }
 
